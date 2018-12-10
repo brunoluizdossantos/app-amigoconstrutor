@@ -68,7 +68,7 @@ export class MyApp {
         document.getElementById("login").style.display = "none";
 
         // Direciona para a página restrita
-        //this.rootPage = HomelogadoPage;
+        this.rootPage = HomelogadoPage;
 
       } else {
 
@@ -78,12 +78,12 @@ export class MyApp {
         document.getElementById("login").style.display = "block";
 
         // Direciona para a página inicial
-        //this.rootPage = HomePage;
+        this.rootPage = HomePage;
         
       }
     });
 
-    this.rootPage = CadastrocompletoPage;
+    //this.rootPage = CadastrocompletoPage;
   }
 
   initializeApp() {
