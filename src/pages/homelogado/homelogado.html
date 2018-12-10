@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-navbar hideBackButton>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Área Restrita</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <p class="nome">Olá, <b>{{sessao.nomeUsuario}}</b></p>
+    <p class="sair" (click)="efetuarLogout()">SAIR</p>
+</ion-content>

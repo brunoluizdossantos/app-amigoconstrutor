@@ -1,0 +1,30 @@
+<ion-header>
+  	<ion-navbar>
+    	<button ion-button menuToggle>
+      		<ion-icon name="menu"></ion-icon>
+    	</button>
+    	<ion-title>Faça seu Login</ion-title>
+  	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<p><strong>Já é cadastrado?</strong> Faça aqui seu login, utilizando seu CPF e senha:</p>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>CPF</ion-label>
+      <ion-input type="text" name="username" [(ngModel)]="data.username"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Senha</ion-label>
+      <ion-input type="password" name="password" [(ngModel)]="data.password"></ion-input>
+    </ion-item>
+    
+    <br>
+    <button ion-button color="dark" block (click)="efetuaLogin()">Entrar</button>
+  </ion-list>
+
+  <p class="link" (click)="recuperaSenha()">Esqueci minha senha</p>
+
+</ion-content>

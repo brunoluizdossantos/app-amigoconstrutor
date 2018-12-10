@@ -1,0 +1,41 @@
+<ion-header>
+  	<ion-navbar>
+    	<button ion-button menuToggle>
+      		<ion-icon name="menu"></ion-icon>
+    	</button>
+    	<ion-title>Cadastre-se</ion-title>
+  	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<p>Cadastre-se e acesse o conteúdo exclusivo da nossa <strong>Área Técnica</strong>:</p>
+
+  	<ion-list>
+  		<ion-item>
+      		<ion-label>Nome</ion-label>
+      		<ion-input type="text" name="nome" [(ngModel)]="data.nome"></ion-input>
+    	</ion-item>
+
+    	<ion-item>
+      		<ion-label>Email</ion-label>
+      		<ion-input type="email" name="email" [(ngModel)]="data.email"></ion-input>
+    	</ion-item>
+
+    	<ion-item>
+      		<ion-label>CPF</ion-label>
+      		<ion-input type="text" name="cpf" [(ngModel)]="data.cpf"></ion-input>
+    	</ion-item>
+
+    	<ion-item>
+      		<ion-label>Senha</ion-label>
+      		<ion-input type="password" name="senha" [(ngModel)]="data.senha"></ion-input>
+    	</ion-item>
+    
+    	<br>
+    	<button ion-button color="dark" block (click)="efetuaCadastro()">Cadastrar</button>
+  </ion-list>
+
+  <p class="texto" (click)="recuperaSenha()">Ou utilize suas informações do</p>
+  <button ion-button color="blue" block (click)="efetuaCadastroFb()"><ion-icon ios="logo-facebook" md="logo-facebook"></ion-icon>&nbsp; Facebook</button>
+
+</ion-content>

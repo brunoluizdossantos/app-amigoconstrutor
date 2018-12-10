@@ -1,0 +1,15 @@
+page-localizacao {
+	.bar-button-menutoggle-md {
+		display: block !important;
+	}
+	.ion-ios-pin {
+		margin-right: 5px;
+	}
+	#buttonModal {
+		display: none;
+	}
+	#map_canvas {
+        width: 100%;
+        height: 100%;
+    }
+}

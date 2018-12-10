@@ -1,0 +1,49 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>Pesquisar Profissional</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <p>Para encontrar um especialista em obra próximo a você, primeiro selecione o Estado de interesse, a Cidade e, em seguida, a Especialidade.</p>
+
+  <ion-item class="itemEstado">
+    <ion-label>Selecione o estado</ion-label>
+    <ion-select [(ngModel)]="inputEstado" (ionChange)="buscaCidade($event)">
+        <!--<ion-option value="0">--</ion-option>-->
+        <ion-option *ngFor="let e of estado" value="{{e.ID}}">{{e.Nome}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item class="itemCidade">
+    <ion-label>Selecione a cidade</ion-label>
+    <ion-select [(ngModel)]="inputCidade" (ionChange)="buscaEspecialidade($event)" disabled="{{isDisabled1}}">
+        <!--<ion-option value="0">--</ion-option>-->
+        <ion-option *ngFor="let c of cidade" value="{{c.ID}}">{{c.Nome}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item class="itemCidade">
+    <ion-label>Selecione a especialidade</ion-label>
+    <ion-select [(ngModel)]="inputEspecialidade" disabled="{{isDisabled2}}">
+        <!--<ion-option value="0">--</ion-option>-->
+        <ion-option *ngFor="let s of especialidade" value="{{s.ID}}">{{s.Nome}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <br>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4>
+        <button ion-button color="light" (click)="limpaCampo()">Limpar</button>
+      </ion-col>
+      <ion-col col-8>
+        <button ion-button color="dark" full (click)="pesquisaProfissional()">Pesquisar</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar hideBackButton>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-card (click)="detalhePost(b.id)" *ngFor="let b of blog">
+        <img src="{{b.image}}"/>
+  
+        <ion-card-content>
+          <p class="fData">{{b.date}}</p>
+          <ion-card-title>{{b.title}}</ion-card-title>
+          <!--<p *ngIf="b.id_cat == 5" class="fCat">{{b.category}}</p>-->
+          <p class="fCat cat{{b.id_cat}}">{{b.category}}</p>
+          <p>{{b.excerpt}}</p>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando mais informações..."></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>
+
+<!--<ion-footer>
+  <ion-searchbar
+  [(ngModel)]="myInput"
+  [showCancelButton]="shouldShowCancel"
+  (ionInput)="onInput($event)"
+  (ionCancel)="onCancel($event)" placeholder="Pesquisar...">
+  </ion-searchbar>
+</ion-footer>-->

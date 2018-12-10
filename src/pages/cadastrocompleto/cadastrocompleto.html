@@ -1,0 +1,99 @@
+<ion-header>
+  	<ion-navbar>
+    	<button ion-button menuToggle>
+      		<ion-icon name="menu"></ion-icon>
+    	</button>
+    	<ion-title>Cadastro</ion-title>
+  	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<p>Complete seu cadastro preenchendo os campos abaixo:</p>
+
+  	<ion-list>
+  		<ion-item>
+      		<ion-label floating>Perfil</ion-label>
+      		<ion-input type="text" name="perfil" [(ngModel)]="data.perfil" disabled="disabled" value="Profissional de Obra"></ion-input>
+    	</ion-item>
+
+    	<!--<ion-item>
+      		<ion-label>Profissões</ion-label>
+      		<ion-select [(ngModel)]="data.profissao">
+            <ion-option *ngFor="let p of dataProfissao" value="{{p.ID}}">{{p.Nome}}</ion-option>
+          </ion-select>
+    	</ion-item>-->
+
+      <ion-item id="profissao">
+        <ion-label>Profissões</ion-label>
+      </ion-item>
+
+      <ion-item *ngFor="let p of dataProfissao">
+        <ion-label>{{p.Nome}}</ion-label>
+        <ion-checkbox id="chk{{p.ID}}" color="dark">{{p.ID}}</ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+          <ion-label floating>Rg</ion-label>
+          <ion-input type="text" name="rg" [(ngModel)]="data.rg"></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-label floating>Sexo</ion-label>
+          <ion-select [(ngModel)]="data.sexo">
+            <ion-option value="1">Masculino</ion-option>
+            <ion-option value="2">Feminino</ion-option>
+          </ion-select>
+      </ion-item>
+
+      <ion-item>
+          <ion-label floating>Data de Nascimento</ion-label>
+          <ion-input type="text" name="nascimento" [(ngModel)]="data.nascimento"></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-label floating>Telefone Celular</ion-label>
+          <ion-input type="text" name="celular" [(ngModel)]="data.celular"></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-label floating>Telefone Comercial</ion-label>
+          <ion-input type="text" name="telefone" [(ngModel)]="data.telefone"></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-label floating>Endereço</ion-label>
+          <ion-input type="text" name="endereco" [(ngModel)]="data.endereco"></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-label floating>Número</ion-label>
+          <ion-input type="text" name="numero" [(ngModel)]="data.numero"></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-label floating>Bairro</ion-label>
+          <ion-input type="text" name="bairro" [(ngModel)]="data.bairro"></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-label floating>Complemento</ion-label>
+          <ion-input type="text" name="complemento" [(ngModel)]="data.complemento"></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-label floating>Cep</ion-label>
+          <ion-input type="text" name="cep" [(ngModel)]="data.cep"></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-label floating>Estado</ion-label>
+          <ion-select [(ngModel)]="data.estado">
+            <ion-option *ngFor="let e of dataEstado" value="{{e.ID}}">{{e.Nome}}</ion-option>
+          </ion-select>
+      </ion-item>
+    
+    	<br>
+    	<button ion-button color="dark" block (click)="efetuaCadastro()">Cadastrar</button>
+  </ion-list>
+
+</ion-content>

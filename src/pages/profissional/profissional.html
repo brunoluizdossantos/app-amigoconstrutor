@@ -1,0 +1,32 @@
+<ion-header>
+	<ion-navbar hideBackButton>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>Encontre um Profissional</ion-title>
+
+    <ion-buttons end>
+        <button ion-button icon-only (click)="pesquisaProfissional()">
+          <!--<ion-icon name="funnel" [style.color]="filtradoPorCategoria ? 'orange' : 'gray'"></ion-icon>-->
+          <ion-icon name="ios-funnel" color="primary"></ion-icon>
+        </button>
+      </ion-buttons>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	 <ion-card *ngFor="let b of blog">
+      	<ion-card-content>
+      		<ion-card-title>{{b.Nome}}</ion-card-title>
+        	<p><strong>Região:</strong> {{b.Cidade}}/{{b.Estado}}</p>
+        	<p [class]="b.Telefone ? '' : 'esconde'"><strong>Telefone:</strong> <a href="tel:{{b.TelNumero}}">{{b.Telefone}}</a></p>
+        	<p [class]="b.Email ? '' : 'esconde'"><strong>E-mail:</strong> <a href="mailto:{{b.Email}}">{{b.Email}}</a></p>
+        	<p [class]="b.Especialidade ? '' : 'esconde'"><strong>Especialidade:</strong> {{b.Especialidade}}</p>
+          <p [class]="b.Latitude ? 'exibe' : 'esconde'" (click)="detalhePost(b.id)" color="danger">Ver no mapa</p>
+      	</ion-card-content>
+    </ion-card>
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+   		<ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando mais informações..."></ion-infinite-scroll-content>
+ 	  </ion-infinite-scroll>
+</ion-content>

@@ -1,0 +1,25 @@
+page-profissional {
+	.fixed-content {
+		background: #f4f4f7;
+	}
+	.card-title:first-letter {
+    	text-transform: uppercase;
+	}
+	.esconde {
+		display: none;
+	}
+	.exibe {
+		text-transform: uppercase;
+		color: red;
+	}
+	.exibe:hover {
+		cursor: pointer;
+	}
+
+	.bar-button-menutoggle-md {
+		display: block !important;
+	}
+	.ion-ios-funnel {
+		margin-right: 5px;
+	}
+}

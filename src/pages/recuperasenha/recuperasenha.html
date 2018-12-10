@@ -1,0 +1,23 @@
+<ion-header>
+  	<ion-navbar>
+    	<button ion-button menuToggle>
+      		<ion-icon name="menu"></ion-icon>
+    	</button>
+    	<ion-title>Recuperar Senha</ion-title>
+  	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<p>Insira seu e-mail cadastrado para receber sua senha:</p>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>E-mail</ion-label>
+      <ion-input type="text" id="email" name="email" [(ngModel)]="data.email"></ion-input>
+    </ion-item>
+
+    <br>
+  	<button ion-button color="dark" full (click)="recuperaSenha()">Recuperar</button>
+  </ion-list>
+
+</ion-content>

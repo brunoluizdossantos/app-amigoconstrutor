@@ -1,0 +1,22 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>Detalhes do Post</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<ion-card *ngFor="let b of blog" class="detalhe card card-md bCat{{b.id_cat}}">
+      	<ion-card-content>
+          <p class="fCat cat{{b.id_cat}}">{{b.category}}</p>
+          <ion-card-title>{{b.title}}</ion-card-title>
+      		<p class="fData">{{b.date}}</p>
+        	<img src="{{b.image}}" class="thumb" />
+        	<!--<p>{{strip(br2nl(b.content))}}</p>-->
+
+          <div [innerHtml]="b.content" class="contText"></div>
+      	</ion-card-content>
+    </ion-card>
+</ion-content>

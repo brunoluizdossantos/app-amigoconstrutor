@@ -1,0 +1,25 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title *ngFor="let b of blog">{{b.Nome}}</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<!--<ion-content padding>
+	<ion-card *ngFor="let b of blog" class="card card-md">
+      	<ion-card-content>
+          <p class="fCat cat{{b.id_cat}}">{{b.category}}</p>
+          <ion-card-title>{{b.title}}</ion-card-title>
+      		<p class="fData">{{b.date}}</p>
+        	<img src="{{b.image}}" class="thumb" />
+
+          <div [innerHtml]="b.content" class="contText"></div>
+      	</ion-card-content>
+    </ion-card>
+</ion-content>-->
+
+<ion-content>
+	<div id="map_canvas"></div>
+</ion-content>

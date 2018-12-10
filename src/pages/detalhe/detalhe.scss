@@ -1,0 +1,56 @@
+page-detalhe {
+	.fData {
+	    padding-top: 5px;
+	    margin: 15px 0;
+	    border-top: 1px solid #eee;
+	    color: #999;
+	}
+	.fCat {
+		margin-bottom: 6px;
+	}
+	.cat5 {
+		color: #448ccb;
+	}
+	.cat6 {
+		color: #8dc63f;
+	}
+	.cat7 {
+		color: #e30613;
+	}
+	.cat8 {
+		color: #a864a8;
+	}
+	.cat38 {
+		color: #575656;
+	}
+
+	ion-card {
+		border-top: 5px solid black;
+	}
+	.bCat5 {
+		border-color: #448ccb;
+	}
+	.bCat6 {
+		border-color: #8dc63f;
+	}
+	.bCat7 {
+		border-color: #e30613;
+	}
+	.bCat8 {
+		border-color: #a864a8;
+	}
+	.bCat38 {
+		border-color: #575656;
+	}
+
+	.thumb {
+		margin-bottom: 20px;
+	}
+	.contText h3 {
+		margin: 10px 0 !important;
+    	font-size: 1.8rem !important;
+	}
+	.contText img {
+		margin: 10px 0;
+	}
+}

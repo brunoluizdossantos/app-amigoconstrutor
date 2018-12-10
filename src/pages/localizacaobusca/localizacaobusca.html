@@ -1,0 +1,46 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>Pesquisar Lojas</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  	<p>Para localizar mais lojas, utilize as opções de pesquisa abaixo ou ative sua localização e tente novamente.</p>
+
+  	<ion-item class="itemCep">
+    	<ion-label>Informe o cep</ion-label>
+    	<ion-input [(ngModel)]="inputCep" name="inputCep"></ion-input>
+  	</ion-item>
+
+  	<ion-item class="itemRaio">
+    	<ion-label>Selecione o raio</ion-label>
+    	<ion-select [(ngModel)]="inputRaio" name="inputRaio">
+        	<ion-option value="1">Raio de 1km</ion-option>
+        	<ion-option value="2">Raio de 2km</ion-option>
+          <ion-option value="3">Raio de 3km</ion-option>
+          <ion-option value="4">Raio de 4km</ion-option>
+        	<ion-option value="5">Raio de 5km</ion-option>
+          <ion-option value="6">Raio de 6km</ion-option>
+          <ion-option value="7">Raio de 7km</ion-option>
+          <ion-option value="8">Raio de 8km</ion-option>
+          <ion-option value="9">Raio de 9km</ion-option>
+        	<ion-option value="10">Raio de 10km</ion-option>
+    	</ion-select>
+  	</ion-item>
+
+  <br>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4>
+        <button ion-button color="light" (click)="limpaCampo()">Limpar</button>
+      </ion-col>
+      <ion-col col-8>
+        <button ion-button color="dark" full (click)="pesquisaProfissional()">Pesquisar</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
