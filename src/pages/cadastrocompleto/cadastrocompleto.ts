@@ -9,9 +9,12 @@ import { BlogProvider } from '../../providers/blog/blog';
 })
 export class CadastrocompletoPage {
 
+    public isDisabled1: any;
+
   	data: any = {};
     dataProfissao: any = [];
     dataEstado: any = [];
+    dataCidade: any = [];
 
   	constructor(
   		public navCtrl: NavController,
@@ -20,6 +23,8 @@ export class CadastrocompletoPage {
   		public toastCtrl: ToastController,
   		public loadingCtrl: LoadingController)
   	{
+      this.isDisabled1 = true;
+
       //this.data.nome = navParams.get("nome");
       //this.data.email = navParams.get("email");
       //this.data.cpf = navParams.get("cpf");
@@ -54,6 +59,24 @@ export class CadastrocompletoPage {
           this.dataEstado = res.Data
         }
       });
+    }
+
+    listaCidadesPorEstado()
+    {
+      this.blogProvider.listaCidadesPorEstado(this.data.estado).subscribe(res => {
+        if(res.Registros){
+          this.dataCidade = res.Data;
+        }
+      });
+    }
+
+    buscaCidade()
+    {
+      if(this.data.estado)
+      {
+        this.listaCidadesPorEstado();
+        this.isDisabled1 = false;
+      }
     }
 
   	efetuaCadastro()

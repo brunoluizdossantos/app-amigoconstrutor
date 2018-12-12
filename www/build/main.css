@@ -25745,6 +25745,10 @@ page-comosefaz .fixed-content {
   background: #f4f4f7;
 }
 
+page-detalhe .fixed-content {
+  background: #f4f4f7;
+}
+
 page-detalhe .fData {
   padding-top: 5px;
   margin: 15px 0;

@@ -87,8 +87,15 @@
 
       <ion-item>
           <ion-label floating>Estado</ion-label>
-          <ion-select [(ngModel)]="data.estado">
+          <ion-select [(ngModel)]="data.estado" (ionChange)="buscaCidade($event)">
             <ion-option *ngFor="let e of dataEstado" value="{{e.ID}}">{{e.Nome}}</ion-option>
+          </ion-select>
+      </ion-item>
+
+      <ion-item>
+          <ion-label floating>Cidade</ion-label>
+          <ion-select [(ngModel)]="data.cidade" disabled="{{isDisabled1}}">
+            <ion-option *ngFor="let e of dataCidade" value="{{e.ID}}">{{e.Nome}}</ion-option>
           </ion-select>
       </ion-item>
     

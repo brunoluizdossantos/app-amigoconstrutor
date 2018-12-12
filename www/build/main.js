@@ -142,10 +142,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var CadastrocompletoPage = /** @class */ (function () {
     function CadastrocompletoPage(navCtrl, navParams, blogProvider, toastCtrl, loadingCtrl) {
-        //this.data.nome = navParams.get("nome");
-        //this.data.email = navParams.get("email");
-        //this.data.cpf = navParams.get("cpf");
-        //this.data.senha = navParams.get("senha");
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.blogProvider = blogProvider;
@@ -154,6 +150,12 @@ var CadastrocompletoPage = /** @class */ (function () {
         this.data = {};
         this.dataProfissao = [];
         this.dataEstado = [];
+        this.dataCidade = [];
+        this.isDisabled1 = true;
+        //this.data.nome = navParams.get("nome");
+        //this.data.email = navParams.get("email");
+        //this.data.cpf = navParams.get("cpf");
+        //this.data.senha = navParams.get("senha");
         this.data.nome = 'Bruno Teste';
         this.data.email = 'brun1@teste.com';
         this.data.cpf = '275.080.750-64';
@@ -180,6 +182,20 @@ var CadastrocompletoPage = /** @class */ (function () {
                 _this.dataEstado = res.Data;
             }
         });
+    };
+    CadastrocompletoPage.prototype.listaCidadesPorEstado = function () {
+        var _this = this;
+        this.blogProvider.listaCidadesPorEstado(this.data.estado).subscribe(function (res) {
+            if (res.Registros) {
+                _this.dataCidade = res.Data;
+            }
+        });
+    };
+    CadastrocompletoPage.prototype.buscaCidade = function () {
+        if (this.data.estado) {
+            this.listaCidadesPorEstado();
+            this.isDisabled1 = false;
+        }
     };
     CadastrocompletoPage.prototype.efetuaCadastro = function () {
         alert('Valida os campos...');
@@ -255,16 +271,12 @@ var CadastrocompletoPage = /** @class */ (function () {
     };
     CadastrocompletoPage = CadastrocompletoPage_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-cadastrocompleto',template:/*ion-inline-start:"C:\Users\bruno\mobile\ionic\AmigoConstrutor\src\pages\cadastrocompleto\cadastrocompleto.html"*/'<ion-header>\n  	<ion-navbar>\n    	<button ion-button menuToggle>\n      		<ion-icon name="menu"></ion-icon>\n    	</button>\n    	<ion-title>Cadastro</ion-title>\n  	</ion-navbar>\n</ion-header>\n\n<ion-content padding>\n	<p>Complete seu cadastro preenchendo os campos abaixo:</p>\n\n  	<ion-list>\n  		<ion-item>\n      		<ion-label floating>Perfil</ion-label>\n      		<ion-input type="text" name="perfil" [(ngModel)]="data.perfil" disabled="disabled" value="Profissional de Obra"></ion-input>\n    	</ion-item>\n\n    	<!--<ion-item>\n      		<ion-label>Profissões</ion-label>\n      		<ion-select [(ngModel)]="data.profissao">\n            <ion-option *ngFor="let p of dataProfissao" value="{{p.ID}}">{{p.Nome}}</ion-option>\n          </ion-select>\n    	</ion-item>-->\n\n      <ion-item id="profissao">\n        <ion-label>Profissões</ion-label>\n      </ion-item>\n\n      <ion-item *ngFor="let p of dataProfissao">\n        <ion-label>{{p.Nome}}</ion-label>\n        <ion-checkbox id="chk{{p.ID}}" color="dark">{{p.ID}}</ion-checkbox>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Rg</ion-label>\n          <ion-input type="text" name="rg" [(ngModel)]="data.rg"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Sexo</ion-label>\n          <ion-select [(ngModel)]="data.sexo">\n            <ion-option value="1">Masculino</ion-option>\n            <ion-option value="2">Feminino</ion-option>\n          </ion-select>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Data de Nascimento</ion-label>\n          <ion-input type="text" name="nascimento" [(ngModel)]="data.nascimento"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Telefone Celular</ion-label>\n          <ion-input type="text" name="celular" [(ngModel)]="data.celular"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Telefone Comercial</ion-label>\n          <ion-input type="text" name="telefone" [(ngModel)]="data.telefone"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Endereço</ion-label>\n          <ion-input type="text" name="endereco" [(ngModel)]="data.endereco"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Número</ion-label>\n          <ion-input type="text" name="numero" [(ngModel)]="data.numero"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Bairro</ion-label>\n          <ion-input type="text" name="bairro" [(ngModel)]="data.bairro"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Complemento</ion-label>\n          <ion-input type="text" name="complemento" [(ngModel)]="data.complemento"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Cep</ion-label>\n          <ion-input type="text" name="cep" [(ngModel)]="data.cep"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Estado</ion-label>\n          <ion-select [(ngModel)]="data.estado">\n            <ion-option *ngFor="let e of dataEstado" value="{{e.ID}}">{{e.Nome}}</ion-option>\n          </ion-select>\n      </ion-item>\n    \n    	<br>\n    	<button ion-button color="dark" block (click)="efetuaCadastro()">Cadastrar</button>\n  </ion-list>\n\n</ion-content>'/*ion-inline-end:"C:\Users\bruno\mobile\ionic\AmigoConstrutor\src\pages\cadastrocompleto\cadastrocompleto.html"*/,
+            selector: 'page-cadastrocompleto',template:/*ion-inline-start:"C:\Users\bruno\mobile\ionic\AmigoConstrutor\src\pages\cadastrocompleto\cadastrocompleto.html"*/'<ion-header>\n  	<ion-navbar>\n    	<button ion-button menuToggle>\n      		<ion-icon name="menu"></ion-icon>\n    	</button>\n    	<ion-title>Cadastro</ion-title>\n  	</ion-navbar>\n</ion-header>\n\n<ion-content padding>\n	<p>Complete seu cadastro preenchendo os campos abaixo:</p>\n\n  	<ion-list>\n  		<ion-item>\n      		<ion-label floating>Perfil</ion-label>\n      		<ion-input type="text" name="perfil" [(ngModel)]="data.perfil" disabled="disabled" value="Profissional de Obra"></ion-input>\n    	</ion-item>\n\n    	<!--<ion-item>\n      		<ion-label>Profissões</ion-label>\n      		<ion-select [(ngModel)]="data.profissao">\n            <ion-option *ngFor="let p of dataProfissao" value="{{p.ID}}">{{p.Nome}}</ion-option>\n          </ion-select>\n    	</ion-item>-->\n\n      <ion-item id="profissao">\n        <ion-label>Profissões</ion-label>\n      </ion-item>\n\n      <ion-item *ngFor="let p of dataProfissao">\n        <ion-label>{{p.Nome}}</ion-label>\n        <ion-checkbox id="chk{{p.ID}}" color="dark">{{p.ID}}</ion-checkbox>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Rg</ion-label>\n          <ion-input type="text" name="rg" [(ngModel)]="data.rg"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Sexo</ion-label>\n          <ion-select [(ngModel)]="data.sexo">\n            <ion-option value="1">Masculino</ion-option>\n            <ion-option value="2">Feminino</ion-option>\n          </ion-select>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Data de Nascimento</ion-label>\n          <ion-input type="text" name="nascimento" [(ngModel)]="data.nascimento"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Telefone Celular</ion-label>\n          <ion-input type="text" name="celular" [(ngModel)]="data.celular"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Telefone Comercial</ion-label>\n          <ion-input type="text" name="telefone" [(ngModel)]="data.telefone"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Endereço</ion-label>\n          <ion-input type="text" name="endereco" [(ngModel)]="data.endereco"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Número</ion-label>\n          <ion-input type="text" name="numero" [(ngModel)]="data.numero"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Bairro</ion-label>\n          <ion-input type="text" name="bairro" [(ngModel)]="data.bairro"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Complemento</ion-label>\n          <ion-input type="text" name="complemento" [(ngModel)]="data.complemento"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Cep</ion-label>\n          <ion-input type="text" name="cep" [(ngModel)]="data.cep"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Estado</ion-label>\n          <ion-select [(ngModel)]="data.estado" (ionChange)="buscaCidade($event)">\n            <ion-option *ngFor="let e of dataEstado" value="{{e.ID}}">{{e.Nome}}</ion-option>\n          </ion-select>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Cidade</ion-label>\n          <ion-select [(ngModel)]="data.cidade" disabled="{{isDisabled1}}">\n            <ion-option *ngFor="let e of dataCidade" value="{{e.ID}}">{{e.Nome}}</ion-option>\n          </ion-select>\n      </ion-item>\n    \n    	<br>\n    	<button ion-button color="dark" block (click)="efetuaCadastro()">Cadastrar</button>\n  </ion-list>\n\n</ion-content>'/*ion-inline-end:"C:\Users\bruno\mobile\ionic\AmigoConstrutor\src\pages\cadastrocompleto\cadastrocompleto.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_blog_blog__["a" /* BlogProvider */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_blog_blog__["a" /* BlogProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_blog_blog__["a" /* BlogProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]) === "function" && _e || Object])
     ], CadastrocompletoPage);
     return CadastrocompletoPage;
-    var CadastrocompletoPage_1;
+    var CadastrocompletoPage_1, _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=cadastrocompleto.js.map
@@ -942,47 +954,47 @@ var BlogProvider = /** @class */ (function () {
     function BlogProvider(http) {
         this.http = http;
         this.dominio = 'http://amigoconstrutor.clientesdream.com.br';
-        this.apiBlog = this.dominio + '/wp-content/themes/amigo-construtor/mobile/api-posts-home.php';
-        this.apiPortal = this.dominio + '/portal/servicos/';
+        this.apiBlog = this.dominio + "/wp-content/themes/amigo-construtor/mobile/api-posts-home.php";
+        this.apiPortal = this.dominio + "/portal/servicos/";
     }
     BlogProvider.prototype.listaBlog = function (itensPorPagina, paginaAtual) {
-        return this.http.get(this.apiBlog + '?itensPorPagina=' + itensPorPagina + '&paginaAtual=' + paginaAtual)
+        return this.http.get(this.apiBlog + "?itensPorPagina=" + itensPorPagina + "&paginaAtual=" + paginaAtual)
             .map(function (data) {
             return data.json();
         });
     };
     BlogProvider.prototype.listaBlogAmigoEnsina = function (itensPorPagina, paginaAtual) {
-        return this.http.get(this.apiBlog + '?itensPorPagina=' + itensPorPagina + '&paginaAtual=' + paginaAtual + '&cat=5')
+        return this.http.get(this.apiBlog + "?itensPorPagina=" + itensPorPagina + "&paginaAtual=" + paginaAtual + "&cat=5")
             .map(function (data) {
             return data.json();
         });
     };
     BlogProvider.prototype.listaBlogComoSeFaz = function (itensPorPagina, paginaAtual) {
-        return this.http.get(this.apiBlog + '?itensPorPagina=' + itensPorPagina + '&paginaAtual=' + paginaAtual + '&cat=7')
+        return this.http.get(this.apiBlog + "?itensPorPagina=" + itensPorPagina + "&paginaAtual=" + paginaAtual + "&cat=7")
             .map(function (data) {
             return data.json();
         });
     };
     BlogProvider.prototype.listaBlogMercado = function (itensPorPagina, paginaAtual) {
-        return this.http.get(this.apiBlog + '?itensPorPagina=' + itensPorPagina + '&paginaAtual=' + paginaAtual + '&cat=8')
+        return this.http.get(this.apiBlog + "?itensPorPagina=" + itensPorPagina + "&paginaAtual=" + paginaAtual + "&cat=8")
             .map(function (data) {
             return data.json();
         });
     };
     BlogProvider.prototype.listaBlogRedeAmigo = function (itensPorPagina, paginaAtual) {
-        return this.http.get(this.apiBlog + '?itensPorPagina=' + itensPorPagina + '&paginaAtual=' + paginaAtual + '&cat=6')
+        return this.http.get(this.apiBlog + "?itensPorPagina=" + itensPorPagina + "&paginaAtual=" + paginaAtual + "&cat=6")
             .map(function (data) {
             return data.json();
         });
     };
     BlogProvider.prototype.listaBlogVideo = function (itensPorPagina, paginaAtual) {
-        return this.http.get(this.apiBlog + '?itensPorPagina=' + itensPorPagina + '&paginaAtual=' + paginaAtual + '&cat=39')
+        return this.http.get(this.apiBlog + "?itensPorPagina=" + itensPorPagina + "&paginaAtual=" + paginaAtual + "&cat=39")
             .map(function (data) {
             return data.json();
         });
     };
     BlogProvider.prototype.listaBlogPost = function (id) {
-        return this.http.get(this.apiBlog + '?id=' + id)
+        return this.http.get(this.apiBlog + "?id=" + id)
             .map(function (data) {
             return data.json();
         });
@@ -993,88 +1005,95 @@ var BlogProvider = /** @class */ (function () {
         if (idEspecialidade === void 0) { idEspecialidade = 0; }
         if (itensPorPagina === void 0) { itensPorPagina = 10; }
         if (paginaAtual === void 0) { paginaAtual = 1; }
-        return this.http.get(this.apiPortal + 'ObterUsuariosFiltroEncontreProfissionalPaginada?CodigoEstado=' + idEstado + '&CodigoCidade=' + idCidade + '&CodigoEspecialidade=' + idEspecialidade + '&itensPorPagina=' + itensPorPagina + '&paginaAtual=' + paginaAtual)
+        return this.http.get(this.apiPortal + "ObterUsuariosFiltroEncontreProfissionalPaginada?CodigoEstado=" + idEstado + "&CodigoCidade=" + idCidade + "&CodigoEspecialidade=" + idEspecialidade + "&itensPorPagina=" + itensPorPagina + "&paginaAtual=" + paginaAtual)
             .map(function (data) {
             return data.json();
         });
     };
     BlogProvider.prototype.listaEncProfissionalId = function (id) {
-        return this.http.get(this.apiPortal + 'ObterUsuarioPorId?id=' + id)
+        return this.http.get(this.apiPortal + "ObterUsuarioPorId?id=" + id)
             .map(function (data) {
             return data.json();
         });
     };
     BlogProvider.prototype.listaEstadosFiltroEncontreProfissional = function () {
-        return this.http.get(this.apiPortal + 'ObterEstadosFiltroEncontreProfissional?CodigoEstado=0&CodigoCidade=0&CodigoEspecialidade=0')
+        return this.http.get(this.apiPortal + "ObterEstadosFiltroEncontreProfissional?CodigoEstado=0&CodigoCidade=0&CodigoEspecialidade=0")
             .map(function (data) {
             return data.json();
         });
     };
     BlogProvider.prototype.listaCidadesPorEstadoFiltroEncontreProfissional = function (idEstado) {
-        return this.http.get(this.apiPortal + 'ObterCidadesPorEstadoFiltroEncontreProfissional?CodigoEstado=' + idEstado + '&CodigoCidade=0&CodigoEspecialidade=0')
+        return this.http.get(this.apiPortal + "ObterCidadesPorEstadoFiltroEncontreProfissional?CodigoEstado=" + idEstado + "&CodigoCidade=0&CodigoEspecialidade=0")
             .map(function (data) {
             return data.json();
         });
     };
     BlogProvider.prototype.listaEspecialidadesPorCidadeFiltroEncontreProfissional = function (idEstado, idCidade) {
-        return this.http.get(this.apiPortal + 'ObterEspecialidadesPorCidadeFiltroEncontreProfissional?CodigoEstado=' + idEstado + '&CodigoCidade=' + idCidade + '&CodigoEspecialidade=0')
+        return this.http.get(this.apiPortal + "ObterEspecialidadesPorCidadeFiltroEncontreProfissional?CodigoEstado=" + idEstado + "&CodigoCidade=" + idCidade + "&CodigoEspecialidade=0")
             .map(function (data) {
             return data.json();
         });
     };
     BlogProvider.prototype.login = function (username, password) {
-        return this.http.get(this.apiPortal + 'ValidarLogin2?cpf=' + username + '&senha=' + password)
+        return this.http.get(this.apiPortal + "ValidarLogin2?cpf=" + username + "&senha=" + password)
             .map(function (data) {
             return data.json();
         });
     };
     BlogProvider.prototype.recuperaSenha = function (email) {
-        return this.http.get(this.apiPortal + 'RecuperarSenha?email=' + email)
+        return this.http.get(this.apiPortal + "RecuperarSenha?email=" + email)
             .map(function (data) {
             return data.json();
         });
     };
     BlogProvider.prototype.listaEstabLocalizacao = function (latitude, longitude, raio) {
-        return this.http.get(this.apiPortal + 'ObterTodasRevendas2?latitude=' + latitude + '&longitude=' + longitude + '&raio=' + raio)
+        return this.http.get(this.apiPortal + "ObterTodasRevendas2?latitude=" + latitude + "&longitude=" + longitude + "&raio=" + raio)
             .map(function (data) {
             return data.json();
         });
     };
     BlogProvider.prototype.validaPreCadastro = function (email, cpf) {
-        return this.http.get(this.apiPortal + 'VerificarExistenciaCPFEmail?email=' + email + '&cpf=' + cpf)
+        return this.http.get(this.apiPortal + "VerificarExistenciaCPFEmail?email=" + email + "&cpf=" + cpf)
             .map(function (data) {
             return data.json();
         });
     };
     BlogProvider.prototype.listaProfissao = function () {
-        return this.http.get(this.apiPortal + 'ObterProfissoes2')
+        return this.http.get(this.apiPortal + "ObterProfissoes2")
             .map(function (data) {
             return data.json();
         });
     };
     BlogProvider.prototype.listaEstado = function () {
-        return this.http.get(this.apiPortal + 'ObterEstados2')
+        return this.http.get(this.apiPortal + "ObterEstados2")
+            .map(function (data) {
+            return data.json();
+        });
+    };
+    BlogProvider.prototype.listaCidadesPorEstado = function (idEstado) {
+        return this.http.get(this.apiPortal + "ObterCidadesPorEstado2?codigoEstado=" + idEstado)
             .map(function (data) {
             return data.json();
         });
     };
     BlogProvider.prototype.cadastroApp = function (latitude, longitude, raio) {
-        return this.http.get(this.apiPortal + 'ObterTodasRevendas2?latitude=' + latitude + '&longitude=' + longitude + '&raio=' + raio)
+        return this.http.get(this.apiPortal + "ObterTodasRevendas2?latitude=" + latitude + "&longitude=" + longitude + "&raio=" + raio)
             .map(function (data) {
             return data.json();
         });
     };
     BlogProvider.prototype.cadastroFacebook = function (latitude, longitude, raio) {
-        return this.http.get(this.apiPortal + 'ObterTodasRevendas2?latitude=' + latitude + '&longitude=' + longitude + '&raio=' + raio)
+        return this.http.get(this.apiPortal + "ObterTodasRevendas2?latitude=" + latitude + "&longitude=" + longitude + "&raio=" + raio)
             .map(function (data) {
             return data.json();
         });
     };
     BlogProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_http__["a" /* Http */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_http__["a" /* Http */]) === "function" && _a || Object])
     ], BlogProvider);
     return BlogProvider;
+    var _a;
 }());
 
 //# sourceMappingURL=blog.js.map
@@ -1233,87 +1252,6 @@ var ProfissionalbuscaPage = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VideosPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_blog_blog__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__detalhe_detalhe__ = __webpack_require__(26);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-var VideosPage = /** @class */ (function () {
-    function VideosPage(navCtrl, navParams, blogProvider, loadingCtrl) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.blogProvider = blogProvider;
-        this.loadingCtrl = loadingCtrl;
-        this.blog = [];
-        this.itensPorPagina = 10;
-        this.paginaAtual = 1;
-    }
-    VideosPage.prototype.ionViewDidLoad = function () {
-        this.listaBlogVideo();
-    };
-    VideosPage.prototype.listaBlogVideo = function () {
-        var _this = this;
-        var loading = this.loadingCtrl.create({
-            content: 'Carregando...'
-        });
-        loading.present();
-        this.blogProvider.listaBlogVideo(this.itensPorPagina, this.paginaAtual).subscribe(function (blog) {
-            loading.dismiss();
-            if (blog.Registro) {
-                _this.blog = blog.Data;
-            }
-        });
-    };
-    VideosPage.prototype.detalhePost = function (id) {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__detalhe_detalhe__["a" /* DetalhePage */], {
-            id: id
-        });
-    };
-    VideosPage.prototype.doInfinite = function (infiniteScroll) {
-        var _this = this;
-        this.paginaAtual++;
-        setTimeout(function () {
-            _this.blogProvider.listaBlogVideo(_this.itensPorPagina, _this.paginaAtual).subscribe(function (blog) {
-                infiniteScroll.complete();
-                if (blog.Registro) {
-                    _this.blog = _this.blog.concat(blog.Data);
-                }
-            });
-        }, 1000);
-    };
-    VideosPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-videos',template:/*ion-inline-start:"C:\Users\bruno\mobile\ionic\AmigoConstrutor\src\pages\videos\videos.html"*/'<ion-header>\n  	<ion-navbar>\n    	<button ion-button menuToggle>\n      		<ion-icon name="menu"></ion-icon>\n    	</button>\n    	<ion-title>Vídeos</ion-title>\n  	</ion-navbar>\n</ion-header>\n\n<ion-content padding>\n	<ion-card (click)="detalhePost(b.id)" *ngFor="let b of blog">\n      	<img src="{{b.image}}"/>\n  \n      	<ion-card-content>\n      		<p class="fData">{{b.date}}</p>\n        	<ion-card-title>{{b.title}}</ion-card-title>\n        	<!--<p *ngIf="b.id_cat == 5" class="fCat">{{b.category}}</p>-->\n        	<p class="fCat">{{b.category}}</p>\n        	<p>{{b.excerpt}}</p>\n      	</ion-card-content>\n    </ion-card>\n\n    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">\n      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando mais informações..."></ion-infinite-scroll-content>\n    </ion-infinite-scroll>\n</ion-content>'/*ion-inline-end:"C:\Users\bruno\mobile\ionic\AmigoConstrutor\src\pages\videos\videos.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_blog_blog__["a" /* BlogProvider */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]])
-    ], VideosPage);
-    return VideosPage;
-}());
-
-//# sourceMappingURL=videos.js.map
-
-/***/ }),
-
-/***/ 122:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RededoamigoPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(7);
@@ -1391,6 +1329,87 @@ var RededoamigoPage = /** @class */ (function () {
 
 /***/ }),
 
+/***/ 122:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VideosPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_blog_blog__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__detalhe_detalhe__ = __webpack_require__(26);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var VideosPage = /** @class */ (function () {
+    function VideosPage(navCtrl, navParams, blogProvider, loadingCtrl) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.blogProvider = blogProvider;
+        this.loadingCtrl = loadingCtrl;
+        this.blog = [];
+        this.itensPorPagina = 10;
+        this.paginaAtual = 1;
+    }
+    VideosPage.prototype.ionViewDidLoad = function () {
+        this.listaBlogVideo();
+    };
+    VideosPage.prototype.listaBlogVideo = function () {
+        var _this = this;
+        var loading = this.loadingCtrl.create({
+            content: 'Carregando...'
+        });
+        loading.present();
+        this.blogProvider.listaBlogVideo(this.itensPorPagina, this.paginaAtual).subscribe(function (blog) {
+            loading.dismiss();
+            if (blog.Registro) {
+                _this.blog = blog.Data;
+            }
+        });
+    };
+    VideosPage.prototype.detalhePost = function (id) {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__detalhe_detalhe__["a" /* DetalhePage */], {
+            id: id
+        });
+    };
+    VideosPage.prototype.doInfinite = function (infiniteScroll) {
+        var _this = this;
+        this.paginaAtual++;
+        setTimeout(function () {
+            _this.blogProvider.listaBlogVideo(_this.itensPorPagina, _this.paginaAtual).subscribe(function (blog) {
+                infiniteScroll.complete();
+                if (blog.Registro) {
+                    _this.blog = _this.blog.concat(blog.Data);
+                }
+            });
+        }, 1000);
+    };
+    VideosPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-videos',template:/*ion-inline-start:"C:\Users\bruno\mobile\ionic\AmigoConstrutor\src\pages\videos\videos.html"*/'<ion-header>\n  	<ion-navbar>\n    	<button ion-button menuToggle>\n      		<ion-icon name="menu"></ion-icon>\n    	</button>\n    	<ion-title>Vídeos</ion-title>\n  	</ion-navbar>\n</ion-header>\n\n<ion-content padding>\n	<ion-card (click)="detalhePost(b.id)" *ngFor="let b of blog">\n      	<img src="{{b.image}}"/>\n  \n      	<ion-card-content>\n      		<p class="fData">{{b.date}}</p>\n        	<ion-card-title>{{b.title}}</ion-card-title>\n        	<!--<p *ngIf="b.id_cat == 5" class="fCat">{{b.category}}</p>-->\n        	<p class="fCat">{{b.category}}</p>\n        	<p>{{b.excerpt}}</p>\n      	</ion-card-content>\n    </ion-card>\n\n    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">\n      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando mais informações..."></ion-infinite-scroll-content>\n    </ion-infinite-scroll>\n</ion-content>'/*ion-inline-end:"C:\Users\bruno\mobile\ionic\AmigoConstrutor\src\pages\videos\videos.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_blog_blog__["a" /* BlogProvider */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]])
+    ], VideosPage);
+    return VideosPage;
+}());
+
+//# sourceMappingURL=videos.js.map
+
+/***/ }),
+
 /***/ 132:
 /***/ (function(module, exports) {
 
@@ -1437,11 +1456,11 @@ var map = {
 		11
 	],
 	"../pages/homelogado/homelogado.module": [
-		300,
+		301,
 		10
 	],
 	"../pages/institucional/institucional.module": [
-		301,
+		300,
 		9
 	],
 	"../pages/localizacao/localizacao.module": [
@@ -1469,15 +1488,15 @@ var map = {
 		3
 	],
 	"../pages/recuperasenha/recuperasenha.module": [
-		308,
+		309,
 		2
 	],
 	"../pages/rededoamigo/rededoamigo.module": [
-		310,
+		308,
 		1
 	],
 	"../pages/videos/videos.module": [
-		309,
+		310,
 		0
 	]
 };
@@ -1538,8 +1557,8 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_profissional_profissional__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_profissionalbusca_profissionalbusca__ = __webpack_require__(120);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_recuperasenha_recuperasenha__ = __webpack_require__(118);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_rededoamigo_rededoamigo__ = __webpack_require__(122);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_videos_videos__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_rededoamigo_rededoamigo__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_videos_videos__ = __webpack_require__(122);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__ionic_native_status_bar__ = __webpack_require__(217);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__ionic_native_splash_screen__ = __webpack_require__(218);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__providers_blog_blog__ = __webpack_require__(12);
@@ -1621,17 +1640,17 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/comosefaz/comosefaz.module#ComosefazPageModule', name: 'ComosefazPage', segment: 'comosefaz', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/detalhe/detalhe.module#DetalhePageModule', name: 'DetalhePage', segment: 'detalhe', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/detalhemapa/detalhemapa.module#DetalhemapaPageModule', name: 'DetalhemapaPage', segment: 'detalhemapa', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/homelogado/homelogado.module#HomelogadoPageModule', name: 'HomelogadoPage', segment: 'homelogado', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/institucional/institucional.module#InstitucionalPageModule', name: 'InstitucionalPage', segment: 'institucional', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/homelogado/homelogado.module#HomelogadoPageModule', name: 'HomelogadoPage', segment: 'homelogado', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/localizacao/localizacao.module#LocalizacaoPageModule', name: 'LocalizacaoPage', segment: 'localizacao', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/localizacaobusca/localizacaobusca.module#LocalizacaobuscaPageModule', name: 'LocalizacaobuscaPage', segment: 'localizacaobusca', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/mercado/mercado.module#MercadoPageModule', name: 'MercadoPage', segment: 'mercado', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/profissional/profissional.module#ProfissionalPageModule', name: 'ProfissionalPage', segment: 'profissional', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/profissionalbusca/profissionalbusca.module#ProfissionalbuscaPageModule', name: 'ProfissionalbuscaPage', segment: 'profissionalbusca', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/rededoamigo/rededoamigo.module#RededoamigoPageModule', name: 'RededoamigoPage', segment: 'rededoamigo', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/recuperasenha/recuperasenha.module#RecuperasenhaPageModule', name: 'RecuperasenhaPage', segment: 'recuperasenha', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/videos/videos.module#VideosPageModule', name: 'VideosPage', segment: 'videos', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/rededoamigo/rededoamigo.module#RededoamigoPageModule', name: 'RededoamigoPage', segment: 'rededoamigo', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/videos/videos.module#VideosPageModule', name: 'VideosPage', segment: 'videos', priority: 'low', defaultHistory: [] }
                     ]
                 }),
             ],
@@ -1737,16 +1756,17 @@ var DetalhePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_amigoconstrutorensina_amigoconstrutorensina__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_cadastro_cadastro__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_comosefaz_comosefaz__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_home_home__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_homelogado_homelogado__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_institucional_institucional__ = __webpack_require__(115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_localizacao_localizacao__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_login_login__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_mercado_mercado__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_profissional_profissional__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_rededoamigo_rededoamigo__ = __webpack_require__(122);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_videos_videos__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_cadastrocompleto_cadastrocompleto__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_comosefaz_comosefaz__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_home_home__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_homelogado_homelogado__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_institucional_institucional__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_localizacao_localizacao__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_login_login__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_mercado_mercado__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_profissional_profissional__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_rededoamigo_rededoamigo__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_videos_videos__ = __webpack_require__(122);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1773,9 +1793,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var MyApp = /** @class */ (function () {
     function MyApp(platform, statusBar, splashScreen, storage) {
-        var _this = this;
         this.platform = platform;
         this.statusBar = statusBar;
         this.splashScreen = splashScreen;
@@ -1783,20 +1803,20 @@ var MyApp = /** @class */ (function () {
         this.initializeApp();
         // used for an example of ngFor and navigation
         this.pages = [
-            { class: 'restrita', title: 'Área Restrita', component: __WEBPACK_IMPORTED_MODULE_9__pages_homelogado_homelogado__["a" /* HomelogadoPage */] },
-            { class: 'home', title: 'Home', component: __WEBPACK_IMPORTED_MODULE_8__pages_home_home__["a" /* HomePage */] },
+            { class: 'restrita', title: 'Área Restrita', component: __WEBPACK_IMPORTED_MODULE_10__pages_homelogado_homelogado__["a" /* HomelogadoPage */] },
+            { class: 'home', title: 'Home', component: __WEBPACK_IMPORTED_MODULE_9__pages_home_home__["a" /* HomePage */] },
             { class: 'ensina', title: '• Amigo Construtor Ensina', component: __WEBPACK_IMPORTED_MODULE_5__pages_amigoconstrutorensina_amigoconstrutorensina__["a" /* AmigoconstrutorensinaPage */] },
-            { class: 'como-faz', title: '• Como se faz', component: __WEBPACK_IMPORTED_MODULE_7__pages_comosefaz_comosefaz__["a" /* ComosefazPage */] },
-            { class: 'mercado', title: '• Mercado', component: __WEBPACK_IMPORTED_MODULE_13__pages_mercado_mercado__["a" /* MercadoPage */] },
-            { class: 'rede-amigo', title: '• Rede do Amigo', component: __WEBPACK_IMPORTED_MODULE_15__pages_rededoamigo_rededoamigo__["a" /* RededoamigoPage */] },
-            { class: 'video', title: '• Vídeos', component: __WEBPACK_IMPORTED_MODULE_16__pages_videos_videos__["a" /* VideosPage */] },
-            { class: 'quem-somos', title: 'Institucional', component: __WEBPACK_IMPORTED_MODULE_10__pages_institucional_institucional__["a" /* InstitucionalPage */] },
-            { class: 'produto', title: 'Produtos', component: __WEBPACK_IMPORTED_MODULE_10__pages_institucional_institucional__["a" /* InstitucionalPage */] },
-            { class: 'encontre', title: 'Encontre um Profissional', component: __WEBPACK_IMPORTED_MODULE_14__pages_profissional_profissional__["a" /* ProfissionalPage */] },
-            { class: 'localizacao', title: 'Localização das Lojas', component: __WEBPACK_IMPORTED_MODULE_11__pages_localizacao_localizacao__["a" /* LocalizacaoPage */] },
-            { class: 'fale-conosco', title: 'Fale Conosco', component: __WEBPACK_IMPORTED_MODULE_10__pages_institucional_institucional__["a" /* InstitucionalPage */] },
+            { class: 'como-faz', title: '• Como se faz', component: __WEBPACK_IMPORTED_MODULE_8__pages_comosefaz_comosefaz__["a" /* ComosefazPage */] },
+            { class: 'mercado', title: '• Mercado', component: __WEBPACK_IMPORTED_MODULE_14__pages_mercado_mercado__["a" /* MercadoPage */] },
+            { class: 'rede-amigo', title: '• Rede do Amigo', component: __WEBPACK_IMPORTED_MODULE_16__pages_rededoamigo_rededoamigo__["a" /* RededoamigoPage */] },
+            { class: 'video', title: '• Vídeos', component: __WEBPACK_IMPORTED_MODULE_17__pages_videos_videos__["a" /* VideosPage */] },
+            { class: 'quem-somos', title: 'Institucional', component: __WEBPACK_IMPORTED_MODULE_11__pages_institucional_institucional__["a" /* InstitucionalPage */] },
+            { class: 'produto', title: 'Produtos', component: __WEBPACK_IMPORTED_MODULE_11__pages_institucional_institucional__["a" /* InstitucionalPage */] },
+            { class: 'encontre', title: 'Encontre um Profissional', component: __WEBPACK_IMPORTED_MODULE_15__pages_profissional_profissional__["a" /* ProfissionalPage */] },
+            { class: 'localizacao', title: 'Localização das Lojas', component: __WEBPACK_IMPORTED_MODULE_12__pages_localizacao_localizacao__["a" /* LocalizacaoPage */] },
+            { class: 'fale-conosco', title: 'Fale Conosco', component: __WEBPACK_IMPORTED_MODULE_11__pages_institucional_institucional__["a" /* InstitucionalPage */] },
             { class: 'cadastro', title: 'Cadastre-se', component: __WEBPACK_IMPORTED_MODULE_6__pages_cadastro_cadastro__["a" /* CadastroPage */] },
-            { class: 'login', title: 'Faça seu Login', component: __WEBPACK_IMPORTED_MODULE_12__pages_login_login__["a" /* LoginPage */] },
+            { class: 'login', title: 'Faça seu Login', component: __WEBPACK_IMPORTED_MODULE_13__pages_login_login__["a" /* LoginPage */] },
         ];
         // Recupera a sessão local
         storage.get('usuario').then(function (name) {
@@ -1807,7 +1827,7 @@ var MyApp = /** @class */ (function () {
                 document.getElementById("cadastro").style.display = "none";
                 document.getElementById("login").style.display = "none";
                 // Direciona para a página restrita
-                _this.rootPage = __WEBPACK_IMPORTED_MODULE_9__pages_homelogado_homelogado__["a" /* HomelogadoPage */];
+                //this.rootPage = HomelogadoPage;
             }
             else {
                 // Ajusta o menu
@@ -1815,10 +1835,10 @@ var MyApp = /** @class */ (function () {
                 document.getElementById("cadastro").style.display = "block";
                 document.getElementById("login").style.display = "block";
                 // Direciona para a página inicial
-                _this.rootPage = __WEBPACK_IMPORTED_MODULE_8__pages_home_home__["a" /* HomePage */];
+                //this.rootPage = HomePage;
             }
         });
-        //this.rootPage = CadastrocompletoPage;
+        this.rootPage = __WEBPACK_IMPORTED_MODULE_7__pages_cadastrocompleto_cadastrocompleto__["a" /* CadastrocompletoPage */];
     }
     MyApp.prototype.initializeApp = function () {
         var _this = this;
@@ -1844,14 +1864,15 @@ var MyApp = /** @class */ (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */])
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */]) === "function" && _a || Object)
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\bruno\mobile\ionic\AmigoConstrutor\src\app\app.html"*/'<ion-menu [content]="content">\n  <ion-header>\n    <ion-toolbar>\n      <ion-title>Menu</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content>\n    <ion-list>\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" id="{{p.class}}">\n        {{p.title}}\n      </button>\n    </ion-list>\n  </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"C:\Users\bruno\mobile\ionic\AmigoConstrutor\src\app\app.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */], __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]) === "function" && _e || Object])
     ], MyApp);
     return MyApp;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=app.component.js.map
