@@ -10,18 +10,20 @@
 <ion-content padding>
 	<p>Complete seu cadastro preenchendo os campos abaixo:</p>
 
-  	<ion-list>
+  	<ion-list class="list-form">
   		<ion-item>
       		<ion-label floating>Perfil</ion-label>
       		<ion-input type="text" name="perfil" [(ngModel)]="data.perfil" disabled="disabled" value="Profissional de Obra"></ion-input>
     	</ion-item>
 
-    	<!--<ion-item>
+    	<!--
+      <ion-item>
       		<ion-label>Profissões</ion-label>
       		<ion-select [(ngModel)]="data.profissao">
             <ion-option *ngFor="let p of dataProfissao" value="{{p.ID}}">{{p.Nome}}</ion-option>
           </ion-select>
-    	</ion-item>-->
+    	</ion-item>
+      -->
 
       <ion-item id="profissao">
         <ion-label>Profissões</ion-label>
@@ -29,7 +31,7 @@
 
       <ion-item *ngFor="let p of dataProfissao">
         <ion-label>{{p.Nome}}</ion-label>
-        <ion-checkbox id="chk{{p.ID}}" color="dark">{{p.ID}}</ion-checkbox>
+        <ion-checkbox (ionChange)="atualizaProfissao($event,p.ID)" color="dark">{{p.ID}}</ion-checkbox>
       </ion-item>
 
       <ion-item>

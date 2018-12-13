@@ -1,6 +1,87 @@
 webpackJsonp([17],{
 
-/***/ 110:
+/***/ 111:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AmigoconstrutorensinaPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_blog_blog__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__detalhe_detalhe__ = __webpack_require__(26);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var AmigoconstrutorensinaPage = /** @class */ (function () {
+    function AmigoconstrutorensinaPage(navCtrl, navParams, blogProvider, loadingCtrl) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.blogProvider = blogProvider;
+        this.loadingCtrl = loadingCtrl;
+        this.blog = [];
+        this.itensPorPagina = 10;
+        this.paginaAtual = 1;
+    }
+    AmigoconstrutorensinaPage.prototype.ionViewDidLoad = function () {
+        this.listaBlogAmigoEnsina();
+    };
+    AmigoconstrutorensinaPage.prototype.listaBlogAmigoEnsina = function () {
+        var _this = this;
+        var loading = this.loadingCtrl.create({
+            content: 'Carregando...'
+        });
+        loading.present();
+        this.blogProvider.listaBlogAmigoEnsina(this.itensPorPagina, this.paginaAtual).subscribe(function (blog) {
+            loading.dismiss();
+            if (blog.Registro) {
+                _this.blog = blog.Data;
+            }
+        });
+    };
+    AmigoconstrutorensinaPage.prototype.detalhePost = function (id) {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__detalhe_detalhe__["a" /* DetalhePage */], {
+            id: id
+        });
+    };
+    AmigoconstrutorensinaPage.prototype.doInfinite = function (infiniteScroll) {
+        var _this = this;
+        this.paginaAtual++;
+        setTimeout(function () {
+            _this.blogProvider.listaBlogAmigoEnsina(_this.itensPorPagina, _this.paginaAtual).subscribe(function (blog) {
+                infiniteScroll.complete();
+                if (blog.Registro) {
+                    _this.blog = _this.blog.concat(blog.Data);
+                }
+            });
+        }, 1000);
+    };
+    AmigoconstrutorensinaPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-amigoconstrutorensina',template:/*ion-inline-start:"C:\Users\bruno\mobile\ionic\AmigoConstrutor\src\pages\amigoconstrutorensina\amigoconstrutorensina.html"*/'<ion-header>\n\n	<ion-navbar>\n\n		<button ion-button menuToggle>\n\n			<ion-icon name="menu"></ion-icon>\n\n		</button>\n\n		<ion-title>Amigo Construtor Ensina</ion-title>\n\n	</ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n	<ion-card (click)="detalhePost(b.id)" *ngFor="let b of blog">\n\n      	<img src="{{b.image}}"/>\n\n  \n\n      	<ion-card-content>\n\n      		<p class="fData">{{b.date}}</p>\n\n        	<ion-card-title>{{b.title}}</ion-card-title>\n\n        	<!--<p *ngIf="b.id_cat == 5" class="fCat">{{b.category}}</p>-->\n\n        	<p class="fCat">{{b.category}}</p>\n\n        	<p>{{b.excerpt}}</p>\n\n      	</ion-card-content>\n\n    </ion-card>\n\n\n\n    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">\n\n      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando mais informações..."></ion-infinite-scroll-content>\n\n    </ion-infinite-scroll>\n\n</ion-content>'/*ion-inline-end:"C:\Users\bruno\mobile\ionic\AmigoConstrutor\src\pages\amigoconstrutorensina\amigoconstrutorensina.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_blog_blog__["a" /* BlogProvider */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]])
+    ], AmigoconstrutorensinaPage);
+    return AmigoconstrutorensinaPage;
+}());
+
+//# sourceMappingURL=amigoconstrutorensina.js.map
+
+/***/ }),
+
+/***/ 112:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +89,7 @@ webpackJsonp([17],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_blog_blog__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cadastrocompleto_cadastrocompleto__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cadastrocompleto_cadastrocompleto__ = __webpack_require__(55);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -117,250 +198,6 @@ var CadastroPage = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=cadastro.js.map
-
-/***/ }),
-
-/***/ 111:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CadastrocompletoPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_blog_blog__ = __webpack_require__(12);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var CadastrocompletoPage = /** @class */ (function () {
-    function CadastrocompletoPage(navCtrl, navParams, blogProvider, toastCtrl, loadingCtrl) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.blogProvider = blogProvider;
-        this.toastCtrl = toastCtrl;
-        this.loadingCtrl = loadingCtrl;
-        this.data = {};
-        this.dataProfissao = [];
-        this.dataEstado = [];
-        this.dataCidade = [];
-        this.isDisabled1 = true;
-        //this.data.nome = navParams.get("nome");
-        //this.data.email = navParams.get("email");
-        //this.data.cpf = navParams.get("cpf");
-        //this.data.senha = navParams.get("senha");
-        this.data.nome = 'Bruno Teste';
-        this.data.email = 'brun1@teste.com';
-        this.data.cpf = '275.080.750-64';
-        this.data.senha = '111';
-    }
-    CadastrocompletoPage_1 = CadastrocompletoPage;
-    CadastrocompletoPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad CadastroPage');
-        this.listaProfissao();
-        this.listaEstado();
-    };
-    CadastrocompletoPage.prototype.listaProfissao = function () {
-        var _this = this;
-        this.blogProvider.listaProfissao().subscribe(function (res) {
-            if (res.Registros) {
-                _this.dataProfissao = res.Data;
-            }
-        });
-    };
-    CadastrocompletoPage.prototype.listaEstado = function () {
-        var _this = this;
-        this.blogProvider.listaEstado().subscribe(function (res) {
-            if (res.Registros) {
-                _this.dataEstado = res.Data;
-            }
-        });
-    };
-    CadastrocompletoPage.prototype.listaCidadesPorEstado = function () {
-        var _this = this;
-        this.blogProvider.listaCidadesPorEstado(this.data.estado).subscribe(function (res) {
-            if (res.Registros) {
-                _this.dataCidade = res.Data;
-            }
-        });
-    };
-    CadastrocompletoPage.prototype.buscaCidade = function () {
-        if (this.data.estado) {
-            this.listaCidadesPorEstado();
-            this.isDisabled1 = false;
-        }
-    };
-    CadastrocompletoPage.prototype.efetuaCadastro = function () {
-        alert('Valida os campos...');
-        return false;
-        /*
-          var nome  = /^((\b[A-zÀ-ú']{2,40}\b)\s*){2,}$/;
-          var email = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})$/;
-        var cpf   = /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/;
-
-        if(!this.data.nome || !this.data.email || !this.data.cpf || !this.data.senha)
-        {
-            this.toastCtrl.create({
-                message: `Preencha todos os campos corretamente.`,
-                duration: 5000,
-                dismissOnPageChange: true,
-            }).present();
-        }
-        else if(!nome.test(this.data.nome))
-        {
-            this.toastCtrl.create({
-                message: `Informe seu nome corretamente.`,
-                duration: 5000,
-                dismissOnPageChange: true,
-            }).present();
-        }
-        else if(!cpf.test(this.data.cpf))
-        {
-            this.toastCtrl.create({
-                message: `Informe um número de cpf válido.`,
-                duration: 5000,
-                dismissOnPageChange: true,
-            }).present();
-        }
-        else if(!email.test(this.data.email))
-        {
-            this.toastCtrl.create({
-                message: `Informe um email válido.`,
-                duration: 5000,
-                dismissOnPageChange: true,
-            }).present();
-        }
-        else
-        {
-            this.validaCadastro();
-        }
-        */
-    };
-    CadastrocompletoPage.prototype.validaCadastro = function () {
-        var _this = this;
-        var loading = this.loadingCtrl.create({
-            content: 'Carregando...'
-        });
-        loading.present();
-        this.blogProvider.validaPreCadastro(this.data.email, this.data.cpf).subscribe(function (res) {
-            loading.dismiss();
-            // Verifica se os campos já existem
-            if (res.Existencia) {
-                _this.toastCtrl.create({
-                    message: "Email e/ou cpf j\u00E1 cadastrados. Verifique suas informa\u00E7\u00F5es e tente novamente.",
-                    duration: 5000,
-                    dismissOnPageChange: true,
-                }).present();
-            }
-            else {
-                _this.navCtrl.push(CadastrocompletoPage_1, {
-                    nome: _this.data.nome,
-                    email: _this.data.email,
-                    cpf: _this.data.cpf,
-                    senha: _this.data.senha,
-                });
-            }
-        });
-    };
-    CadastrocompletoPage = CadastrocompletoPage_1 = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-cadastrocompleto',template:/*ion-inline-start:"C:\Users\bruno\mobile\ionic\AmigoConstrutor\src\pages\cadastrocompleto\cadastrocompleto.html"*/'<ion-header>\n  	<ion-navbar>\n    	<button ion-button menuToggle>\n      		<ion-icon name="menu"></ion-icon>\n    	</button>\n    	<ion-title>Cadastro</ion-title>\n  	</ion-navbar>\n</ion-header>\n\n<ion-content padding>\n	<p>Complete seu cadastro preenchendo os campos abaixo:</p>\n\n  	<ion-list>\n  		<ion-item>\n      		<ion-label floating>Perfil</ion-label>\n      		<ion-input type="text" name="perfil" [(ngModel)]="data.perfil" disabled="disabled" value="Profissional de Obra"></ion-input>\n    	</ion-item>\n\n    	<!--<ion-item>\n      		<ion-label>Profissões</ion-label>\n      		<ion-select [(ngModel)]="data.profissao">\n            <ion-option *ngFor="let p of dataProfissao" value="{{p.ID}}">{{p.Nome}}</ion-option>\n          </ion-select>\n    	</ion-item>-->\n\n      <ion-item id="profissao">\n        <ion-label>Profissões</ion-label>\n      </ion-item>\n\n      <ion-item *ngFor="let p of dataProfissao">\n        <ion-label>{{p.Nome}}</ion-label>\n        <ion-checkbox id="chk{{p.ID}}" color="dark">{{p.ID}}</ion-checkbox>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Rg</ion-label>\n          <ion-input type="text" name="rg" [(ngModel)]="data.rg"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Sexo</ion-label>\n          <ion-select [(ngModel)]="data.sexo">\n            <ion-option value="1">Masculino</ion-option>\n            <ion-option value="2">Feminino</ion-option>\n          </ion-select>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Data de Nascimento</ion-label>\n          <ion-input type="text" name="nascimento" [(ngModel)]="data.nascimento"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Telefone Celular</ion-label>\n          <ion-input type="text" name="celular" [(ngModel)]="data.celular"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Telefone Comercial</ion-label>\n          <ion-input type="text" name="telefone" [(ngModel)]="data.telefone"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Endereço</ion-label>\n          <ion-input type="text" name="endereco" [(ngModel)]="data.endereco"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Número</ion-label>\n          <ion-input type="text" name="numero" [(ngModel)]="data.numero"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Bairro</ion-label>\n          <ion-input type="text" name="bairro" [(ngModel)]="data.bairro"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Complemento</ion-label>\n          <ion-input type="text" name="complemento" [(ngModel)]="data.complemento"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Cep</ion-label>\n          <ion-input type="text" name="cep" [(ngModel)]="data.cep"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Estado</ion-label>\n          <ion-select [(ngModel)]="data.estado" (ionChange)="buscaCidade($event)">\n            <ion-option *ngFor="let e of dataEstado" value="{{e.ID}}">{{e.Nome}}</ion-option>\n          </ion-select>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Cidade</ion-label>\n          <ion-select [(ngModel)]="data.cidade" disabled="{{isDisabled1}}">\n            <ion-option *ngFor="let e of dataCidade" value="{{e.ID}}">{{e.Nome}}</ion-option>\n          </ion-select>\n      </ion-item>\n    \n    	<br>\n    	<button ion-button color="dark" block (click)="efetuaCadastro()">Cadastrar</button>\n  </ion-list>\n\n</ion-content>'/*ion-inline-end:"C:\Users\bruno\mobile\ionic\AmigoConstrutor\src\pages\cadastrocompleto\cadastrocompleto.html"*/,
-        }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_blog_blog__["a" /* BlogProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_blog_blog__["a" /* BlogProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]) === "function" && _e || Object])
-    ], CadastrocompletoPage);
-    return CadastrocompletoPage;
-    var CadastrocompletoPage_1, _a, _b, _c, _d, _e;
-}());
-
-//# sourceMappingURL=cadastrocompleto.js.map
-
-/***/ }),
-
-/***/ 112:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AmigoconstrutorensinaPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_blog_blog__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__detalhe_detalhe__ = __webpack_require__(26);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-var AmigoconstrutorensinaPage = /** @class */ (function () {
-    function AmigoconstrutorensinaPage(navCtrl, navParams, blogProvider, loadingCtrl) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.blogProvider = blogProvider;
-        this.loadingCtrl = loadingCtrl;
-        this.blog = [];
-        this.itensPorPagina = 10;
-        this.paginaAtual = 1;
-    }
-    AmigoconstrutorensinaPage.prototype.ionViewDidLoad = function () {
-        this.listaBlogAmigoEnsina();
-    };
-    AmigoconstrutorensinaPage.prototype.listaBlogAmigoEnsina = function () {
-        var _this = this;
-        var loading = this.loadingCtrl.create({
-            content: 'Carregando...'
-        });
-        loading.present();
-        this.blogProvider.listaBlogAmigoEnsina(this.itensPorPagina, this.paginaAtual).subscribe(function (blog) {
-            loading.dismiss();
-            if (blog.Registro) {
-                _this.blog = blog.Data;
-            }
-        });
-    };
-    AmigoconstrutorensinaPage.prototype.detalhePost = function (id) {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__detalhe_detalhe__["a" /* DetalhePage */], {
-            id: id
-        });
-    };
-    AmigoconstrutorensinaPage.prototype.doInfinite = function (infiniteScroll) {
-        var _this = this;
-        this.paginaAtual++;
-        setTimeout(function () {
-            _this.blogProvider.listaBlogAmigoEnsina(_this.itensPorPagina, _this.paginaAtual).subscribe(function (blog) {
-                infiniteScroll.complete();
-                if (blog.Registro) {
-                    _this.blog = _this.blog.concat(blog.Data);
-                }
-            });
-        }, 1000);
-    };
-    AmigoconstrutorensinaPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-amigoconstrutorensina',template:/*ion-inline-start:"C:\Users\bruno\mobile\ionic\AmigoConstrutor\src\pages\amigoconstrutorensina\amigoconstrutorensina.html"*/'<ion-header>\n\n	<ion-navbar>\n\n		<button ion-button menuToggle>\n\n			<ion-icon name="menu"></ion-icon>\n\n		</button>\n\n		<ion-title>Amigo Construtor Ensina</ion-title>\n\n	</ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n	<ion-card (click)="detalhePost(b.id)" *ngFor="let b of blog">\n\n      	<img src="{{b.image}}"/>\n\n  \n\n      	<ion-card-content>\n\n      		<p class="fData">{{b.date}}</p>\n\n        	<ion-card-title>{{b.title}}</ion-card-title>\n\n        	<!--<p *ngIf="b.id_cat == 5" class="fCat">{{b.category}}</p>-->\n\n        	<p class="fCat">{{b.category}}</p>\n\n        	<p>{{b.excerpt}}</p>\n\n      	</ion-card-content>\n\n    </ion-card>\n\n\n\n    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">\n\n      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando mais informações..."></ion-infinite-scroll-content>\n\n    </ion-infinite-scroll>\n\n</ion-content>'/*ion-inline-end:"C:\Users\bruno\mobile\ionic\AmigoConstrutor\src\pages\amigoconstrutorensina\amigoconstrutorensina.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_blog_blog__["a" /* BlogProvider */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]])
-    ], AmigoconstrutorensinaPage);
-    return AmigoconstrutorensinaPage;
-}());
-
-//# sourceMappingURL=amigoconstrutorensina.js.map
 
 /***/ }),
 
@@ -610,7 +447,7 @@ var InstitucionalPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LocalizacaobuscaPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__localizacao_localizacao__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__localizacao_localizacao__ = __webpack_require__(57);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -681,7 +518,7 @@ var LocalizacaobuscaPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_blog_blog__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__recuperasenha_recuperasenha__ = __webpack_require__(118);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__homelogado_homelogado__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__homelogado_homelogado__ = __webpack_require__(56);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1090,10 +927,9 @@ var BlogProvider = /** @class */ (function () {
     };
     BlogProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_http__["a" /* Http */]) === "function" && _a || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_http__["a" /* Http */]])
     ], BlogProvider);
     return BlogProvider;
-    var _a;
 }());
 
 //# sourceMappingURL=blog.js.map
@@ -1108,7 +944,7 @@ var BlogProvider = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_blog_blog__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__profissional_profissional__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__profissional_profissional__ = __webpack_require__(58);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1432,11 +1268,11 @@ webpackEmptyAsyncContext.id = 132;
 
 var map = {
 	"../pages/amigoconstrutorensina/amigoconstrutorensina.module": [
-		295,
+		294,
 		16
 	],
 	"../pages/cadastro/cadastro.module": [
-		294,
+		295,
 		15
 	],
 	"../pages/cadastrocompleto/cadastrocompleto.module": [
@@ -1456,11 +1292,11 @@ var map = {
 		11
 	],
 	"../pages/homelogado/homelogado.module": [
-		301,
+		300,
 		10
 	],
 	"../pages/institucional/institucional.module": [
-		300,
+		301,
 		9
 	],
 	"../pages/localizacao/localizacao.module": [
@@ -1488,11 +1324,11 @@ var map = {
 		3
 	],
 	"../pages/recuperasenha/recuperasenha.module": [
-		309,
+		308,
 		2
 	],
 	"../pages/rededoamigo/rededoamigo.module": [
-		308,
+		309,
 		1
 	],
 	"../pages/videos/videos.module": [
@@ -1540,21 +1376,21 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(292);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_amigoconstrutorensina_amigoconstrutorensina__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_cadastro_cadastro__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_cadastrocompleto_cadastrocompleto__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_amigoconstrutorensina_amigoconstrutorensina__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_cadastro_cadastro__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_cadastrocompleto_cadastrocompleto__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_comosefaz_comosefaz__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_detalhe_detalhe__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_detalhemapa_detalhemapa__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_home_home__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_homelogado_homelogado__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_home_home__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_homelogado_homelogado__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_institucional_institucional__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_list_list__ = __webpack_require__(293);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_localizacao_localizacao__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_localizacao_localizacao__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_localizacaobusca_localizacaobusca__ = __webpack_require__(116);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_login_login__ = __webpack_require__(117);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_mercado_mercado__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_profissional_profissional__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_profissional_profissional__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_profissionalbusca_profissionalbusca__ = __webpack_require__(120);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_recuperasenha_recuperasenha__ = __webpack_require__(118);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_rededoamigo_rededoamigo__ = __webpack_require__(121);
@@ -1562,7 +1398,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__ionic_native_status_bar__ = __webpack_require__(217);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__ionic_native_splash_screen__ = __webpack_require__(218);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__providers_blog_blog__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__ionic_native_geolocation__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__ionic_native_geolocation__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__ionic_native_network__ = __webpack_require__(177);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__ionic_storage__ = __webpack_require__(49);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1634,22 +1470,22 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_29__ionic_storage__["a" /* IonicStorageModule */].forRoot(),
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* MyApp */], {}, {
                     links: [
-                        { loadChildren: '../pages/cadastro/cadastro.module#CadastroPageModule', name: 'CadastroPage', segment: 'cadastro', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/amigoconstrutorensina/amigoconstrutorensina.module#AmigoconstrutorensinaPageModule', name: 'AmigoconstrutorensinaPage', segment: 'amigoconstrutorensina', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/cadastro/cadastro.module#CadastroPageModule', name: 'CadastroPage', segment: 'cadastro', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/cadastrocompleto/cadastrocompleto.module#CadastrocompletoPageModule', name: 'CadastrocompletoPage', segment: 'cadastrocompleto', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/comosefaz/comosefaz.module#ComosefazPageModule', name: 'ComosefazPage', segment: 'comosefaz', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/detalhe/detalhe.module#DetalhePageModule', name: 'DetalhePage', segment: 'detalhe', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/detalhemapa/detalhemapa.module#DetalhemapaPageModule', name: 'DetalhemapaPage', segment: 'detalhemapa', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/institucional/institucional.module#InstitucionalPageModule', name: 'InstitucionalPage', segment: 'institucional', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/homelogado/homelogado.module#HomelogadoPageModule', name: 'HomelogadoPage', segment: 'homelogado', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/institucional/institucional.module#InstitucionalPageModule', name: 'InstitucionalPage', segment: 'institucional', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/localizacao/localizacao.module#LocalizacaoPageModule', name: 'LocalizacaoPage', segment: 'localizacao', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/localizacaobusca/localizacaobusca.module#LocalizacaobuscaPageModule', name: 'LocalizacaobuscaPage', segment: 'localizacaobusca', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/mercado/mercado.module#MercadoPageModule', name: 'MercadoPage', segment: 'mercado', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/profissional/profissional.module#ProfissionalPageModule', name: 'ProfissionalPage', segment: 'profissional', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/profissionalbusca/profissionalbusca.module#ProfissionalbuscaPageModule', name: 'ProfissionalbuscaPage', segment: 'profissionalbusca', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/rededoamigo/rededoamigo.module#RededoamigoPageModule', name: 'RededoamigoPage', segment: 'rededoamigo', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/recuperasenha/recuperasenha.module#RecuperasenhaPageModule', name: 'RecuperasenhaPage', segment: 'recuperasenha', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/rededoamigo/rededoamigo.module#RededoamigoPageModule', name: 'RededoamigoPage', segment: 'rededoamigo', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/videos/videos.module#VideosPageModule', name: 'VideosPage', segment: 'videos', priority: 'low', defaultHistory: [] }
                     ]
                 }),
@@ -1754,17 +1590,17 @@ var DetalhePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(217);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(218);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_amigoconstrutorensina_amigoconstrutorensina__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_cadastro_cadastro__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_cadastrocompleto_cadastrocompleto__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_amigoconstrutorensina_amigoconstrutorensina__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_cadastro_cadastro__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_cadastrocompleto_cadastrocompleto__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_comosefaz_comosefaz__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_home_home__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_homelogado_homelogado__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_home_home__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_homelogado_homelogado__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_institucional_institucional__ = __webpack_require__(115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_localizacao_localizacao__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_localizacao_localizacao__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_login_login__ = __webpack_require__(117);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_mercado_mercado__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_profissional_profissional__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_profissional_profissional__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_rededoamigo_rededoamigo__ = __webpack_require__(121);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_videos_videos__ = __webpack_require__(122);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1864,15 +1700,14 @@ var MyApp = /** @class */ (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */]),
-        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */]) === "function" && _a || Object)
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */])
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\bruno\mobile\ionic\AmigoConstrutor\src\app\app.html"*/'<ion-menu [content]="content">\n  <ion-header>\n    <ion-toolbar>\n      <ion-title>Menu</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content>\n    <ion-list>\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" id="{{p.class}}">\n        {{p.title}}\n      </button>\n    </ion-list>\n  </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"C:\Users\bruno\mobile\ionic\AmigoConstrutor\src\app\app.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]) === "function" && _e || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */], __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]])
     ], MyApp);
     return MyApp;
-    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=app.component.js.map
@@ -1940,11 +1775,219 @@ var ListPage = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CadastrocompletoPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_blog_blog__ = __webpack_require__(12);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var CadastrocompletoPage = /** @class */ (function () {
+    function CadastrocompletoPage(navCtrl, navParams, blogProvider, toastCtrl, loadingCtrl) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.blogProvider = blogProvider;
+        this.toastCtrl = toastCtrl;
+        this.loadingCtrl = loadingCtrl;
+        this.data = {};
+        this.dataProfissao = [];
+        this.dataEstado = [];
+        this.dataCidade = [];
+        this.checked = [];
+        this.isDisabled1 = true;
+        //this.data.nome = navParams.get("nome");
+        //this.data.email = navParams.get("email");
+        //this.data.cpf = navParams.get("cpf");
+        //this.data.senha = navParams.get("senha");
+        this.data.nome = 'Bruno Teste';
+        this.data.email = 'brun1@teste.com';
+        this.data.cpf = '275.080.750-64';
+        this.data.senha = '111';
+    }
+    CadastrocompletoPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad CadastroPage');
+        this.listaProfissao();
+        this.listaEstado();
+    };
+    CadastrocompletoPage.prototype.listaProfissao = function () {
+        var _this = this;
+        this.blogProvider.listaProfissao().subscribe(function (res) {
+            if (res.Registros) {
+                _this.dataProfissao = res.Data;
+            }
+        });
+    };
+    CadastrocompletoPage.prototype.listaEstado = function () {
+        var _this = this;
+        this.blogProvider.listaEstado().subscribe(function (res) {
+            if (res.Registros) {
+                _this.dataEstado = res.Data;
+            }
+        });
+    };
+    CadastrocompletoPage.prototype.listaCidadesPorEstado = function () {
+        var _this = this;
+        this.blogProvider.listaCidadesPorEstado(this.data.estado).subscribe(function (res) {
+            if (res.Registros) {
+                _this.dataCidade = res.Data;
+            }
+        });
+    };
+    CadastrocompletoPage.prototype.buscaCidade = function () {
+        if (this.data.estado) {
+            this.listaCidadesPorEstado();
+            this.isDisabled1 = false;
+        }
+    };
+    // Adds the checkedbox to the array and check if you unchecked it
+    CadastrocompletoPage.prototype.atualizaProfissao = function (event, checkbox) {
+        if (event.checked) {
+            this.checked.push(checkbox);
+        }
+        else {
+            var index = this.removeCheckedFromArray(checkbox);
+            this.checked.splice(index, 1);
+        }
+        this.data.profissao = this.checked.sort(function (a, b) { return a > b ? 1 : -1; }).join(';');
+    };
+    // Removes checkbox from array when you uncheck it
+    CadastrocompletoPage.prototype.removeCheckedFromArray = function (checkbox) {
+        return this.checked.findIndex(function (category) {
+            return category === checkbox;
+        });
+    };
+    //Empties array with checkedboxes
+    /*
+    emptyCheckedArray() {
+      this.checked = [];
+    }
+    */
+    CadastrocompletoPage.prototype.efetuaCadastro = function () {
+        console.log("nome: " + this.data.nome);
+        console.log("email: " + this.data.email);
+        console.log("cpf: " + this.data.cpf);
+        console.log("senha: " + this.data.senha);
+        console.log("perfil: " + this.data.perfil);
+        console.log("profissao: " + this.data.profissao);
+        console.log("rg: " + this.data.rg);
+        console.log("sexo: " + this.data.sexo);
+        console.log("nascimento: " + this.data.nascimento);
+        console.log("celular: " + this.data.celular);
+        console.log("telefone: " + this.data.telefone);
+        console.log("endereco: " + this.data.endereco);
+        console.log("numero: " + this.data.numero);
+        console.log("bairro: " + this.data.bairro);
+        console.log("complemento: " + this.data.complemento);
+        console.log("cep: " + this.data.cep);
+        console.log("estado: " + this.data.estado);
+        console.log("cidade: " + this.data.cidade);
+        /*
+          var nome  = /^((\b[A-zÀ-ú']{2,40}\b)\s*){2,}$/;
+          var email = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})$/;
+        var cpf   = /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/;
+
+        if(!this.data.nome || !this.data.email || !this.data.cpf || !this.data.senha)
+        {
+            this.toastCtrl.create({
+                message: `Preencha todos os campos corretamente.`,
+                duration: 5000,
+                dismissOnPageChange: true,
+            }).present();
+        }
+        else if(!nome.test(this.data.nome))
+        {
+            this.toastCtrl.create({
+                message: `Informe seu nome corretamente.`,
+                duration: 5000,
+                dismissOnPageChange: true,
+            }).present();
+        }
+        else if(!cpf.test(this.data.cpf))
+        {
+            this.toastCtrl.create({
+                message: `Informe um número de cpf válido.`,
+                duration: 5000,
+                dismissOnPageChange: true,
+            }).present();
+        }
+        else if(!email.test(this.data.email))
+        {
+            this.toastCtrl.create({
+                message: `Informe um email válido.`,
+                duration: 5000,
+                dismissOnPageChange: true,
+            }).present();
+        }
+        else
+        {
+            this.finalizaCadastro();
+        }
+        */
+    };
+    CadastrocompletoPage.prototype.finalizaCadastro = function () {
+        var loading = this.loadingCtrl.create({
+            content: 'Carregando...'
+        });
+        loading.present();
+        console.log("nome: " + this.data.nome);
+        console.log("email: " + this.data.email);
+        console.log("cpf: " + this.data.cpf);
+        console.log("senha: " + this.data.senha);
+        return false;
+        this.blogProvider.validaPreCadastro(this.data.email, this.data.cpf).subscribe(function (res) {
+            loading.dismiss();
+            // Verifica se os campos já existem
+            /*if(res.Existencia)
+            {
+            this.toastCtrl.create({
+                    message: `Email e/ou cpf já cadastrados. Verifique suas informações e tente novamente.`,
+                    duration: 5000,
+                    dismissOnPageChange: true,
+                  }).present();
+            }
+            else
+            {
+                this.navCtrl.push(CadastrocompletoPage, {
+                    nome: this.data.nome,
+                    email: this.data.email,
+                    cpf: this.data.cpf,
+                    senha: this.data.senha,
+                  });
+            }*/
+        });
+    };
+    CadastrocompletoPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-cadastrocompleto',template:/*ion-inline-start:"C:\Users\bruno\mobile\ionic\AmigoConstrutor\src\pages\cadastrocompleto\cadastrocompleto.html"*/'<ion-header>\n  	<ion-navbar>\n    	<button ion-button menuToggle>\n      		<ion-icon name="menu"></ion-icon>\n    	</button>\n    	<ion-title>Cadastro</ion-title>\n  	</ion-navbar>\n</ion-header>\n\n<ion-content padding>\n	<p>Complete seu cadastro preenchendo os campos abaixo:</p>\n\n  	<ion-list class="list-form">\n  		<ion-item>\n      		<ion-label floating>Perfil</ion-label>\n      		<ion-input type="text" name="perfil" [(ngModel)]="data.perfil" disabled="disabled" value="Profissional de Obra"></ion-input>\n    	</ion-item>\n\n    	<!--\n      <ion-item>\n      		<ion-label>Profissões</ion-label>\n      		<ion-select [(ngModel)]="data.profissao">\n            <ion-option *ngFor="let p of dataProfissao" value="{{p.ID}}">{{p.Nome}}</ion-option>\n          </ion-select>\n    	</ion-item>\n      -->\n\n      <ion-item id="profissao">\n        <ion-label>Profissões</ion-label>\n      </ion-item>\n\n      <ion-item *ngFor="let p of dataProfissao">\n        <ion-label>{{p.Nome}}</ion-label>\n        <ion-checkbox (ionChange)="atualizaProfissao($event,p.ID)" color="dark">{{p.ID}}</ion-checkbox>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Rg</ion-label>\n          <ion-input type="text" name="rg" [(ngModel)]="data.rg"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Sexo</ion-label>\n          <ion-select [(ngModel)]="data.sexo">\n            <ion-option value="1">Masculino</ion-option>\n            <ion-option value="2">Feminino</ion-option>\n          </ion-select>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Data de Nascimento</ion-label>\n          <ion-input type="text" name="nascimento" [(ngModel)]="data.nascimento"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Telefone Celular</ion-label>\n          <ion-input type="text" name="celular" [(ngModel)]="data.celular"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Telefone Comercial</ion-label>\n          <ion-input type="text" name="telefone" [(ngModel)]="data.telefone"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Endereço</ion-label>\n          <ion-input type="text" name="endereco" [(ngModel)]="data.endereco"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Número</ion-label>\n          <ion-input type="text" name="numero" [(ngModel)]="data.numero"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Bairro</ion-label>\n          <ion-input type="text" name="bairro" [(ngModel)]="data.bairro"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Complemento</ion-label>\n          <ion-input type="text" name="complemento" [(ngModel)]="data.complemento"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Cep</ion-label>\n          <ion-input type="text" name="cep" [(ngModel)]="data.cep"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Estado</ion-label>\n          <ion-select [(ngModel)]="data.estado" (ionChange)="buscaCidade($event)">\n            <ion-option *ngFor="let e of dataEstado" value="{{e.ID}}">{{e.Nome}}</ion-option>\n          </ion-select>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Cidade</ion-label>\n          <ion-select [(ngModel)]="data.cidade" disabled="{{isDisabled1}}">\n            <ion-option *ngFor="let e of dataCidade" value="{{e.ID}}">{{e.Nome}}</ion-option>\n          </ion-select>\n      </ion-item>\n    \n    	<br>\n    	<button ion-button color="dark" block (click)="efetuaCadastro()">Cadastrar</button>\n  </ion-list>\n\n</ion-content>'/*ion-inline-end:"C:\Users\bruno\mobile\ionic\AmigoConstrutor\src\pages\cadastrocompleto\cadastrocompleto.html"*/,
+        }),
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_blog_blog__["a" /* BlogProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_blog_blog__["a" /* BlogProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]) === "function" && _e || Object])
+    ], CadastrocompletoPage);
+    return CadastrocompletoPage;
+    var _a, _b, _c, _d, _e;
+}());
+
+//# sourceMappingURL=cadastrocompleto.js.map
+
+/***/ }),
+
+/***/ 56:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomelogadoPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(87);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2000,14 +2043,14 @@ var HomelogadoPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 56:
+/***/ 57:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LocalizacaoPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_blog_blog__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__localizacaobusca_localizacaobusca__ = __webpack_require__(116);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -2258,7 +2301,7 @@ var LocalizacaoPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 57:
+/***/ 58:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2351,7 +2394,7 @@ var ProfissionalPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 86:
+/***/ 87:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2360,7 +2403,7 @@ var ProfissionalPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_blog_blog__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__detalhe_detalhe__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_geolocation__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_geolocation__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_network__ = __webpack_require__(177);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_http__ = __webpack_require__(48);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {

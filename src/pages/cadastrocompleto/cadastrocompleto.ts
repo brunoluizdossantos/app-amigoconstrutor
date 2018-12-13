@@ -79,10 +79,59 @@ export class CadastrocompletoPage {
       }
     }
 
+
+
+    checked = [];
+
+    // Adds the checkedbox to the array and check if you unchecked it
+    atualizaProfissao(event, checkbox : String) {
+      if ( event.checked ) {
+        this.checked.push(checkbox);
+      } else {
+        let index = this.removeCheckedFromArray(checkbox);
+        this.checked.splice(index,1);
+      }
+      
+      this.data.profissao = this.checked.sort((a, b) => a > b ? 1 : -1).join(';');
+    }
+
+    // Removes checkbox from array when you uncheck it
+    removeCheckedFromArray(checkbox : String) {
+      return this.checked.findIndex((category)=>{
+        return category === checkbox;
+      })
+    }
+
+    //Empties array with checkedboxes
+    /*
+    emptyCheckedArray() {
+      this.checked = [];
+    }
+    */
+
+
+
   	efetuaCadastro()
   	{
-        alert('Valida os campos...');
-        return false;
+      console.log(`nome: ${this.data.nome}`);
+      console.log(`email: ${this.data.email}`);
+      console.log(`cpf: ${this.data.cpf}`);
+      console.log(`senha: ${this.data.senha}`);
+      console.log(`perfil: ${this.data.perfil}`);
+      console.log(`profissao: ${this.data.profissao}`);
+      console.log(`rg: ${this.data.rg}`);
+      console.log(`sexo: ${this.data.sexo}`);
+      console.log(`nascimento: ${this.data.nascimento}`);
+      console.log(`celular: ${this.data.celular}`);
+      console.log(`telefone: ${this.data.telefone}`);
+      console.log(`endereco: ${this.data.endereco}`);
+      console.log(`numero: ${this.data.numero}`);
+      console.log(`bairro: ${this.data.bairro}`);
+      console.log(`complemento: ${this.data.complemento}`);
+      console.log(`cep: ${this.data.cep}`);
+      console.log(`estado: ${this.data.estado}`);
+      console.log(`cidade: ${this.data.cidade}`);
+
 
         /*
   		  var nome  = /^((\b[A-zÀ-ú']{2,40}\b)\s*){2,}$/;
@@ -123,12 +172,12 @@ export class CadastrocompletoPage {
       	}
       	else
       	{
-      		this.validaCadastro();
+      		this.finalizaCadastro();
         }
         */
   	}
 
-  	validaCadastro()
+  	finalizaCadastro()
   	{
       	let loading = this.loadingCtrl.create({
         	content: 'Carregando...'
@@ -136,17 +185,24 @@ export class CadastrocompletoPage {
 
       	loading.present();
 
+        console.log(`nome: ${this.data.nome}`);
+        console.log(`email: ${this.data.email}`);
+        console.log(`cpf: ${this.data.cpf}`);
+        console.log(`senha: ${this.data.senha}`);
+
+        return false;
+
     	  this.blogProvider.validaPreCadastro(this.data.email, this.data.cpf).subscribe(res => {
         	loading.dismiss();        
 
         	// Verifica se os campos já existem
-        	if(res.Existencia)
+        	/*if(res.Existencia)
         	{
-          		this.toastCtrl.create({
+          	this.toastCtrl.create({
 		      		message: `Email e/ou cpf já cadastrados. Verifique suas informações e tente novamente.`,
 		      		duration: 5000,
 		      		dismissOnPageChange: true,
-		    	}).present();
+		    	  }).present();
         	}
         	else
         	{
@@ -155,8 +211,8 @@ export class CadastrocompletoPage {
 			        email: this.data.email,
 			        cpf: this.data.cpf,
 			        senha: this.data.senha,
-			    });
-        	}
+			      });
+        	}*/
       	});
   	}
 }
