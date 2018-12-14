@@ -188,13 +188,10 @@ var CadastroPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-cadastro',template:/*ion-inline-start:"C:\Users\bruno\mobile\ionic\AmigoConstrutor\src\pages\cadastro\cadastro.html"*/'<ion-header>\n  	<ion-navbar>\n    	<button ion-button menuToggle>\n      		<ion-icon name="menu"></ion-icon>\n    	</button>\n    	<ion-title>Cadastre-se</ion-title>\n  	</ion-navbar>\n</ion-header>\n\n<ion-content padding>\n	<p>Cadastre-se e acesse o conteúdo exclusivo da nossa <strong>Área Técnica</strong>:</p>\n\n  	<ion-list>\n  		<ion-item>\n      		<ion-label>Nome</ion-label>\n      		<ion-input type="text" name="nome" [(ngModel)]="data.nome"></ion-input>\n    	</ion-item>\n\n    	<ion-item>\n      		<ion-label>Email</ion-label>\n      		<ion-input type="email" name="email" [(ngModel)]="data.email"></ion-input>\n    	</ion-item>\n\n    	<ion-item>\n      		<ion-label>CPF</ion-label>\n      		<ion-input type="text" name="cpf" [(ngModel)]="data.cpf"></ion-input>\n    	</ion-item>\n\n    	<ion-item>\n      		<ion-label>Senha</ion-label>\n      		<ion-input type="password" name="senha" [(ngModel)]="data.senha"></ion-input>\n    	</ion-item>\n    \n    	<br>\n    	<button ion-button color="dark" block (click)="efetuaCadastro()">Cadastrar</button>\n  </ion-list>\n\n  <p class="texto" (click)="recuperaSenha()">Ou utilize suas informações do</p>\n  <button ion-button color="blue" block (click)="efetuaCadastroFb()"><ion-icon ios="logo-facebook" md="logo-facebook"></ion-icon>&nbsp; Facebook</button>\n\n</ion-content>'/*ion-inline-end:"C:\Users\bruno\mobile\ionic\AmigoConstrutor\src\pages\cadastro\cadastro.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_blog_blog__["a" /* BlogProvider */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_blog_blog__["a" /* BlogProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_blog_blog__["a" /* BlogProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]) === "function" && _e || Object])
     ], CadastroPage);
     return CadastroPage;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=cadastro.js.map
@@ -549,6 +546,13 @@ var LoginPage = /** @class */ (function () {
         this.data.username = '';
         this.data.password = '';
         this.data.response = '';
+        // Verifica se houve cadastro de usuário
+        if (navParams.get("cadastro")) {
+            this.toastCtrl.create({
+                message: "Cadastro realizado com sucesso. Para acessar sua conta, utilize os campos acima.",
+                duration: 5000,
+            }).present();
+        }
     }
     LoginPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad LoginPage');
@@ -598,14 +602,10 @@ var LoginPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-login',template:/*ion-inline-start:"C:\Users\bruno\mobile\ionic\AmigoConstrutor\src\pages\login\login.html"*/'<ion-header>\n  	<ion-navbar>\n    	<button ion-button menuToggle>\n      		<ion-icon name="menu"></ion-icon>\n    	</button>\n    	<ion-title>Faça seu Login</ion-title>\n  	</ion-navbar>\n</ion-header>\n\n<ion-content padding>\n	<p><strong>Já é cadastrado?</strong> Faça aqui seu login, utilizando seu CPF e senha:</p>\n\n  <ion-list>\n    <ion-item>\n      <ion-label>CPF</ion-label>\n      <ion-input type="text" name="username" [(ngModel)]="data.username"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label>Senha</ion-label>\n      <ion-input type="password" name="password" [(ngModel)]="data.password"></ion-input>\n    </ion-item>\n    \n    <br>\n    <button ion-button color="dark" block (click)="efetuaLogin()">Entrar</button>\n  </ion-list>\n\n  <p class="link" (click)="recuperaSenha()">Esqueci minha senha</p>\n\n</ion-content>'/*ion-inline-end:"C:\Users\bruno\mobile\ionic\AmigoConstrutor\src\pages\login\login.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_4__providers_blog_blog__["a" /* BlogProvider */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */],
-            __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */],
-            __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__providers_blog_blog__["a" /* BlogProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_blog_blog__["a" /* BlogProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */]) === "function" && _f || Object])
     ], LoginPage);
     return LoginPage;
+    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=login.js.map
@@ -913,8 +913,8 @@ var BlogProvider = /** @class */ (function () {
             return data.json();
         });
     };
-    BlogProvider.prototype.cadastroApp = function (latitude, longitude, raio) {
-        return this.http.get(this.apiPortal + "ObterTodasRevendas2?latitude=" + latitude + "&longitude=" + longitude + "&raio=" + raio)
+    BlogProvider.prototype.cadastroApp = function (nome, email, cpf, senha, perfil, profissao, rg, sexo, nascimento, celular, telefone, endereco, numero, bairro, complemento, cep, estado, cidade, aceite) {
+        return this.http.get(this.apiPortal + "CadastrarUsuario2?Nome=" + nome + "&Email=" + email + "&CPF=" + cpf + "&Senha=" + senha + "&CodigoPerfil=" + perfil + "&CodigosProfissao=" + profissao + "&RG=" + rg + "&CodigoSexo=" + sexo + "&DataNascimento=" + nascimento + "&CelularFormatado=" + celular + "&TelefoneComercialFormatado=" + telefone + "&Endereco=" + endereco + "&Numero=" + numero + "&Bairro=" + bairro + "&Complemento=" + complemento + "&CEP=" + cep + "&CodigoEstado=" + estado + "&CodigoCidade=" + cidade + "&ParticipaEncontreProfissional=" + aceite)
             .map(function (data) {
             return data.json();
         });
@@ -1300,39 +1300,39 @@ var map = {
 		9
 	],
 	"../pages/localizacao/localizacao.module": [
-		302,
+		310,
 		8
 	],
 	"../pages/localizacaobusca/localizacaobusca.module": [
-		303,
+		302,
 		7
 	],
 	"../pages/login/login.module": [
-		304,
+		303,
 		6
 	],
 	"../pages/mercado/mercado.module": [
-		305,
+		304,
 		5
 	],
 	"../pages/profissional/profissional.module": [
-		306,
+		305,
 		4
 	],
 	"../pages/profissionalbusca/profissionalbusca.module": [
-		307,
+		306,
 		3
 	],
 	"../pages/recuperasenha/recuperasenha.module": [
-		308,
+		307,
 		2
 	],
 	"../pages/rededoamigo/rededoamigo.module": [
-		309,
+		308,
 		1
 	],
 	"../pages/videos/videos.module": [
-		310,
+		309,
 		0
 	]
 };
@@ -1478,7 +1478,6 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/detalhemapa/detalhemapa.module#DetalhemapaPageModule', name: 'DetalhemapaPage', segment: 'detalhemapa', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/homelogado/homelogado.module#HomelogadoPageModule', name: 'HomelogadoPage', segment: 'homelogado', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/institucional/institucional.module#InstitucionalPageModule', name: 'InstitucionalPage', segment: 'institucional', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/localizacao/localizacao.module#LocalizacaoPageModule', name: 'LocalizacaoPage', segment: 'localizacao', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/localizacaobusca/localizacaobusca.module#LocalizacaobuscaPageModule', name: 'LocalizacaobuscaPage', segment: 'localizacaobusca', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/mercado/mercado.module#MercadoPageModule', name: 'MercadoPage', segment: 'mercado', priority: 'low', defaultHistory: [] },
@@ -1486,7 +1485,8 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/profissionalbusca/profissionalbusca.module#ProfissionalbuscaPageModule', name: 'ProfissionalbuscaPage', segment: 'profissionalbusca', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/recuperasenha/recuperasenha.module#RecuperasenhaPageModule', name: 'RecuperasenhaPage', segment: 'recuperasenha', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/rededoamigo/rededoamigo.module#RededoamigoPageModule', name: 'RededoamigoPage', segment: 'rededoamigo', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/videos/videos.module#VideosPageModule', name: 'VideosPage', segment: 'videos', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/videos/videos.module#VideosPageModule', name: 'VideosPage', segment: 'videos', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/localizacao/localizacao.module#LocalizacaoPageModule', name: 'LocalizacaoPage', segment: 'localizacao', priority: 'low', defaultHistory: [] }
                     ]
                 }),
             ],
@@ -1592,17 +1592,16 @@ var DetalhePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_amigoconstrutorensina_amigoconstrutorensina__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_cadastro_cadastro__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_cadastrocompleto_cadastrocompleto__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_comosefaz_comosefaz__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_home_home__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_homelogado_homelogado__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_institucional_institucional__ = __webpack_require__(115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_localizacao_localizacao__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_login_login__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_mercado_mercado__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_profissional_profissional__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_rededoamigo_rededoamigo__ = __webpack_require__(121);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_videos_videos__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_comosefaz_comosefaz__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_home_home__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_homelogado_homelogado__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_institucional_institucional__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_localizacao_localizacao__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_login_login__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_mercado_mercado__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_profissional_profissional__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_rededoamigo_rededoamigo__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_videos_videos__ = __webpack_require__(122);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1629,9 +1628,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var MyApp = /** @class */ (function () {
     function MyApp(platform, statusBar, splashScreen, storage) {
+        var _this = this;
         this.platform = platform;
         this.statusBar = statusBar;
         this.splashScreen = splashScreen;
@@ -1639,20 +1638,20 @@ var MyApp = /** @class */ (function () {
         this.initializeApp();
         // used for an example of ngFor and navigation
         this.pages = [
-            { class: 'restrita', title: 'Área Restrita', component: __WEBPACK_IMPORTED_MODULE_10__pages_homelogado_homelogado__["a" /* HomelogadoPage */] },
-            { class: 'home', title: 'Home', component: __WEBPACK_IMPORTED_MODULE_9__pages_home_home__["a" /* HomePage */] },
+            { class: 'restrita', title: 'Área Restrita', component: __WEBPACK_IMPORTED_MODULE_9__pages_homelogado_homelogado__["a" /* HomelogadoPage */] },
+            { class: 'home', title: 'Home', component: __WEBPACK_IMPORTED_MODULE_8__pages_home_home__["a" /* HomePage */] },
             { class: 'ensina', title: '• Amigo Construtor Ensina', component: __WEBPACK_IMPORTED_MODULE_5__pages_amigoconstrutorensina_amigoconstrutorensina__["a" /* AmigoconstrutorensinaPage */] },
-            { class: 'como-faz', title: '• Como se faz', component: __WEBPACK_IMPORTED_MODULE_8__pages_comosefaz_comosefaz__["a" /* ComosefazPage */] },
-            { class: 'mercado', title: '• Mercado', component: __WEBPACK_IMPORTED_MODULE_14__pages_mercado_mercado__["a" /* MercadoPage */] },
-            { class: 'rede-amigo', title: '• Rede do Amigo', component: __WEBPACK_IMPORTED_MODULE_16__pages_rededoamigo_rededoamigo__["a" /* RededoamigoPage */] },
-            { class: 'video', title: '• Vídeos', component: __WEBPACK_IMPORTED_MODULE_17__pages_videos_videos__["a" /* VideosPage */] },
-            { class: 'quem-somos', title: 'Institucional', component: __WEBPACK_IMPORTED_MODULE_11__pages_institucional_institucional__["a" /* InstitucionalPage */] },
-            { class: 'produto', title: 'Produtos', component: __WEBPACK_IMPORTED_MODULE_11__pages_institucional_institucional__["a" /* InstitucionalPage */] },
-            { class: 'encontre', title: 'Encontre um Profissional', component: __WEBPACK_IMPORTED_MODULE_15__pages_profissional_profissional__["a" /* ProfissionalPage */] },
-            { class: 'localizacao', title: 'Localização das Lojas', component: __WEBPACK_IMPORTED_MODULE_12__pages_localizacao_localizacao__["a" /* LocalizacaoPage */] },
-            { class: 'fale-conosco', title: 'Fale Conosco', component: __WEBPACK_IMPORTED_MODULE_11__pages_institucional_institucional__["a" /* InstitucionalPage */] },
+            { class: 'como-faz', title: '• Como se faz', component: __WEBPACK_IMPORTED_MODULE_7__pages_comosefaz_comosefaz__["a" /* ComosefazPage */] },
+            { class: 'mercado', title: '• Mercado', component: __WEBPACK_IMPORTED_MODULE_13__pages_mercado_mercado__["a" /* MercadoPage */] },
+            { class: 'rede-amigo', title: '• Rede do Amigo', component: __WEBPACK_IMPORTED_MODULE_15__pages_rededoamigo_rededoamigo__["a" /* RededoamigoPage */] },
+            { class: 'video', title: '• Vídeos', component: __WEBPACK_IMPORTED_MODULE_16__pages_videos_videos__["a" /* VideosPage */] },
+            { class: 'quem-somos', title: 'Institucional', component: __WEBPACK_IMPORTED_MODULE_10__pages_institucional_institucional__["a" /* InstitucionalPage */] },
+            { class: 'produto', title: 'Produtos', component: __WEBPACK_IMPORTED_MODULE_10__pages_institucional_institucional__["a" /* InstitucionalPage */] },
+            { class: 'encontre', title: 'Encontre um Profissional', component: __WEBPACK_IMPORTED_MODULE_14__pages_profissional_profissional__["a" /* ProfissionalPage */] },
+            { class: 'localizacao', title: 'Localização das Lojas', component: __WEBPACK_IMPORTED_MODULE_11__pages_localizacao_localizacao__["a" /* LocalizacaoPage */] },
+            { class: 'fale-conosco', title: 'Fale Conosco', component: __WEBPACK_IMPORTED_MODULE_10__pages_institucional_institucional__["a" /* InstitucionalPage */] },
             { class: 'cadastro', title: 'Cadastre-se', component: __WEBPACK_IMPORTED_MODULE_6__pages_cadastro_cadastro__["a" /* CadastroPage */] },
-            { class: 'login', title: 'Faça seu Login', component: __WEBPACK_IMPORTED_MODULE_13__pages_login_login__["a" /* LoginPage */] },
+            { class: 'login', title: 'Faça seu Login', component: __WEBPACK_IMPORTED_MODULE_12__pages_login_login__["a" /* LoginPage */] },
         ];
         // Recupera a sessão local
         storage.get('usuario').then(function (name) {
@@ -1663,7 +1662,7 @@ var MyApp = /** @class */ (function () {
                 document.getElementById("cadastro").style.display = "none";
                 document.getElementById("login").style.display = "none";
                 // Direciona para a página restrita
-                //this.rootPage = HomelogadoPage;
+                _this.rootPage = __WEBPACK_IMPORTED_MODULE_9__pages_homelogado_homelogado__["a" /* HomelogadoPage */];
             }
             else {
                 // Ajusta o menu
@@ -1671,10 +1670,10 @@ var MyApp = /** @class */ (function () {
                 document.getElementById("cadastro").style.display = "block";
                 document.getElementById("login").style.display = "block";
                 // Direciona para a página inicial
-                //this.rootPage = HomePage;
+                _this.rootPage = __WEBPACK_IMPORTED_MODULE_8__pages_home_home__["a" /* HomePage */];
             }
         });
-        this.rootPage = __WEBPACK_IMPORTED_MODULE_7__pages_cadastrocompleto_cadastrocompleto__["a" /* CadastrocompletoPage */];
+        //this.rootPage = LoginPage;
     }
     MyApp.prototype.initializeApp = function () {
         var _this = this;
@@ -1700,14 +1699,15 @@ var MyApp = /** @class */ (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */])
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */]) === "function" && _a || Object)
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\bruno\mobile\ionic\AmigoConstrutor\src\app\app.html"*/'<ion-menu [content]="content">\n  <ion-header>\n    <ion-toolbar>\n      <ion-title>Menu</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content>\n    <ion-list>\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" id="{{p.class}}">\n        {{p.title}}\n      </button>\n    </ion-list>\n  </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"C:\Users\bruno\mobile\ionic\AmigoConstrutor\src\app\app.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */], __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]) === "function" && _e || Object])
     ], MyApp);
     return MyApp;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=app.component.js.map
@@ -1779,6 +1779,7 @@ var ListPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_blog_blog__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_login__ = __webpack_require__(117);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1788,6 +1789,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -1804,14 +1806,15 @@ var CadastrocompletoPage = /** @class */ (function () {
         this.dataCidade = [];
         this.checked = [];
         this.isDisabled1 = true;
-        //this.data.nome = navParams.get("nome");
-        //this.data.email = navParams.get("email");
-        //this.data.cpf = navParams.get("cpf");
-        //this.data.senha = navParams.get("senha");
-        this.data.nome = 'Bruno Teste';
-        this.data.email = 'brun1@teste.com';
-        this.data.cpf = '275.080.750-64';
-        this.data.senha = '111';
+        this.isDisabled2 = true;
+        this.data.nome = navParams.get("nome");
+        this.data.email = navParams.get("email");
+        this.data.cpf = navParams.get("cpf");
+        this.data.senha = navParams.get("senha");
+        //this.data.nome = 'Bruno Teste';
+        //this.data.email = 'brun24@teste.com';
+        //this.data.cpf = '896.605.520-68';
+        //this.data.senha = '111';
     }
     CadastrocompletoPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad CadastroPage');
@@ -1845,7 +1848,7 @@ var CadastrocompletoPage = /** @class */ (function () {
     CadastrocompletoPage.prototype.buscaCidade = function () {
         if (this.data.estado) {
             this.listaCidadesPorEstado();
-            this.isDisabled1 = false;
+            this.isDisabled2 = false;
         }
     };
     // Adds the checkedbox to the array and check if you unchecked it
@@ -1872,24 +1875,17 @@ var CadastrocompletoPage = /** @class */ (function () {
     }
     */
     CadastrocompletoPage.prototype.efetuaCadastro = function () {
-        console.log("nome: " + this.data.nome);
-        console.log("email: " + this.data.email);
-        console.log("cpf: " + this.data.cpf);
-        console.log("senha: " + this.data.senha);
-        console.log("perfil: " + this.data.perfil);
-        console.log("profissao: " + this.data.profissao);
-        console.log("rg: " + this.data.rg);
-        console.log("sexo: " + this.data.sexo);
-        console.log("nascimento: " + this.data.nascimento);
-        console.log("celular: " + this.data.celular);
-        console.log("telefone: " + this.data.telefone);
-        console.log("endereco: " + this.data.endereco);
-        console.log("numero: " + this.data.numero);
-        console.log("bairro: " + this.data.bairro);
-        console.log("complemento: " + this.data.complemento);
-        console.log("cep: " + this.data.cep);
-        console.log("estado: " + this.data.estado);
-        console.log("cidade: " + this.data.cidade);
+        if (!this.data.perfil || !this.data.profissao || !this.data.rg || !this.data.sexo || !this.data.nascimento || !this.data.celular || !this.data.telefone || !this.data.endereco || !this.data.numero || !this.data.bairro || !this.data.complemento || !this.data.cep || !this.data.estado || !this.data.cidade || !this.data.aceite) {
+            this.toastCtrl.create({
+                message: "Preencha todos os campos corretamente.",
+                duration: 5000,
+                dismissOnPageChange: true,
+            }).present();
+        }
+        else {
+            this.finalizaCadastro();
+        }
+        //this.data.username = this.data.username.replace('.', '').replace('.', '').replace('-', '');
         /*
           var nome  = /^((\b[A-zÀ-ú']{2,40}\b)\s*){2,}$/;
           var email = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})$/;
@@ -1927,47 +1923,40 @@ var CadastrocompletoPage = /** @class */ (function () {
                 dismissOnPageChange: true,
             }).present();
         }
-        else
-        {
-            this.finalizaCadastro();
-        }
+        
         */
     };
     CadastrocompletoPage.prototype.finalizaCadastro = function () {
+        var _this = this;
         var loading = this.loadingCtrl.create({
             content: 'Carregando...'
         });
         loading.present();
-        console.log("nome: " + this.data.nome);
-        console.log("email: " + this.data.email);
-        console.log("cpf: " + this.data.cpf);
-        console.log("senha: " + this.data.senha);
-        return false;
-        this.blogProvider.validaPreCadastro(this.data.email, this.data.cpf).subscribe(function (res) {
+        // Formata os campos
+        this.data.cpf = this.data.cpf.replace('.', '').replace('.', '').replace('-', '');
+        this.data.celular = this.data.celular.replace('(', '').replace(')', '').replace(' ', '').replace('-', '');
+        this.data.telefone = this.data.telefone.replace('(', '').replace(')', '').replace(' ', '').replace('-', '');
+        this.blogProvider.cadastroApp(this.data.nome, this.data.email, this.data.cpf, this.data.senha, this.data.perfil, this.data.profissao, this.data.rg, this.data.sexo, this.data.nascimento, this.data.celular, this.data.telefone, this.data.endereco, this.data.numero, this.data.bairro, this.data.complemento, this.data.cep, this.data.estado, this.data.cidade, this.data.aceite).subscribe(function (res) {
             loading.dismiss();
             // Verifica se os campos já existem
-            /*if(res.Existencia)
-            {
-            this.toastCtrl.create({
-                    message: `Email e/ou cpf já cadastrados. Verifique suas informações e tente novamente.`,
+            if (res.Usuario) {
+                _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__login_login__["a" /* LoginPage */], {
+                    cadastro: true,
+                });
+            }
+            else {
+                _this.toastCtrl.create({
+                    //message: `Erro ao cadastrar. Verifique suas informações e tente novamente.`,
+                    message: res.CamposInvalidos.replace(';', ''),
                     duration: 5000,
                     dismissOnPageChange: true,
-                  }).present();
+                }).present();
             }
-            else
-            {
-                this.navCtrl.push(CadastrocompletoPage, {
-                    nome: this.data.nome,
-                    email: this.data.email,
-                    cpf: this.data.cpf,
-                    senha: this.data.senha,
-                  });
-            }*/
         });
     };
     CadastrocompletoPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-cadastrocompleto',template:/*ion-inline-start:"C:\Users\bruno\mobile\ionic\AmigoConstrutor\src\pages\cadastrocompleto\cadastrocompleto.html"*/'<ion-header>\n  	<ion-navbar>\n    	<button ion-button menuToggle>\n      		<ion-icon name="menu"></ion-icon>\n    	</button>\n    	<ion-title>Cadastro</ion-title>\n  	</ion-navbar>\n</ion-header>\n\n<ion-content padding>\n	<p>Complete seu cadastro preenchendo os campos abaixo:</p>\n\n  	<ion-list class="list-form">\n  		<ion-item>\n      		<ion-label floating>Perfil</ion-label>\n      		<ion-input type="text" name="perfil" [(ngModel)]="data.perfil" disabled="disabled" value="Profissional de Obra"></ion-input>\n    	</ion-item>\n\n    	<!--\n      <ion-item>\n      		<ion-label>Profissões</ion-label>\n      		<ion-select [(ngModel)]="data.profissao">\n            <ion-option *ngFor="let p of dataProfissao" value="{{p.ID}}">{{p.Nome}}</ion-option>\n          </ion-select>\n    	</ion-item>\n      -->\n\n      <ion-item id="profissao">\n        <ion-label>Profissões</ion-label>\n      </ion-item>\n\n      <ion-item *ngFor="let p of dataProfissao">\n        <ion-label>{{p.Nome}}</ion-label>\n        <ion-checkbox (ionChange)="atualizaProfissao($event,p.ID)" color="dark">{{p.ID}}</ion-checkbox>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Rg</ion-label>\n          <ion-input type="text" name="rg" [(ngModel)]="data.rg"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Sexo</ion-label>\n          <ion-select [(ngModel)]="data.sexo">\n            <ion-option value="1">Masculino</ion-option>\n            <ion-option value="2">Feminino</ion-option>\n          </ion-select>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Data de Nascimento</ion-label>\n          <ion-input type="text" name="nascimento" [(ngModel)]="data.nascimento"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Telefone Celular</ion-label>\n          <ion-input type="text" name="celular" [(ngModel)]="data.celular"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Telefone Comercial</ion-label>\n          <ion-input type="text" name="telefone" [(ngModel)]="data.telefone"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Endereço</ion-label>\n          <ion-input type="text" name="endereco" [(ngModel)]="data.endereco"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Número</ion-label>\n          <ion-input type="text" name="numero" [(ngModel)]="data.numero"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Bairro</ion-label>\n          <ion-input type="text" name="bairro" [(ngModel)]="data.bairro"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Complemento</ion-label>\n          <ion-input type="text" name="complemento" [(ngModel)]="data.complemento"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Cep</ion-label>\n          <ion-input type="text" name="cep" [(ngModel)]="data.cep"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Estado</ion-label>\n          <ion-select [(ngModel)]="data.estado" (ionChange)="buscaCidade($event)">\n            <ion-option *ngFor="let e of dataEstado" value="{{e.ID}}">{{e.Nome}}</ion-option>\n          </ion-select>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Cidade</ion-label>\n          <ion-select [(ngModel)]="data.cidade" disabled="{{isDisabled1}}">\n            <ion-option *ngFor="let e of dataCidade" value="{{e.ID}}">{{e.Nome}}</ion-option>\n          </ion-select>\n      </ion-item>\n    \n    	<br>\n    	<button ion-button color="dark" block (click)="efetuaCadastro()">Cadastrar</button>\n  </ion-list>\n\n</ion-content>'/*ion-inline-end:"C:\Users\bruno\mobile\ionic\AmigoConstrutor\src\pages\cadastrocompleto\cadastrocompleto.html"*/,
+            selector: 'page-cadastrocompleto',template:/*ion-inline-start:"C:\Users\bruno\mobile\ionic\AmigoConstrutor\src\pages\cadastrocompleto\cadastrocompleto.html"*/'<ion-header>\n  	<ion-navbar>\n    	<button ion-button menuToggle>\n      		<ion-icon name="menu"></ion-icon>\n    	</button>\n    	<ion-title>Cadastro</ion-title>\n  	</ion-navbar>\n</ion-header>\n\n<ion-content padding>\n	<p>Complete seu cadastro preenchendo os campos abaixo:</p>\n\n  	<ion-list class="list-form">\n  		<ion-item>\n      		<ion-label floating>Perfil</ion-label>\n          <ion-input type="hidden" name="perfil" [(ngModel)]="data.perfil" value="7"></ion-input>\n      		<ion-input type="text" value="Profissional de Obra" disabled="{{isDisabled1}}"></ion-input>\n    	</ion-item>\n\n    	<!--\n      <ion-item>\n      		<ion-label>Profissões</ion-label>\n      		<ion-select [(ngModel)]="data.profissao">\n            <ion-option *ngFor="let p of dataProfissao" value="{{p.ID}}">{{p.Nome}}</ion-option>\n          </ion-select>\n    	</ion-item>\n      -->\n\n      <ion-item>\n        <ion-label>Profissões</ion-label>\n      </ion-item>\n\n      <ion-item *ngFor="let p of dataProfissao">\n        <ion-label>{{p.Nome}}</ion-label>\n        <ion-checkbox (ionChange)="atualizaProfissao($event,p.ID)" color="dark">{{p.ID}}</ion-checkbox>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Rg</ion-label>\n          <ion-input type="text" name="rg" [(ngModel)]="data.rg"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Sexo</ion-label>\n          <ion-select [(ngModel)]="data.sexo">\n            <ion-option value="1">Masculino</ion-option>\n            <ion-option value="2">Feminino</ion-option>\n          </ion-select>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Data de Nascimento</ion-label>\n          <ion-input type="text" name="nascimento" [(ngModel)]="data.nascimento"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Telefone Celular</ion-label>\n          <ion-input type="text" name="celular" [(ngModel)]="data.celular"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Telefone Comercial</ion-label>\n          <ion-input type="text" name="telefone" [(ngModel)]="data.telefone"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Endereço</ion-label>\n          <ion-input type="text" name="endereco" [(ngModel)]="data.endereco"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Número</ion-label>\n          <ion-input type="text" name="numero" [(ngModel)]="data.numero"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Bairro</ion-label>\n          <ion-input type="text" name="bairro" [(ngModel)]="data.bairro"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Complemento</ion-label>\n          <ion-input type="text" name="complemento" [(ngModel)]="data.complemento"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Cep</ion-label>\n          <ion-input type="text" name="cep" [(ngModel)]="data.cep"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Estado</ion-label>\n          <ion-select [(ngModel)]="data.estado" (ionChange)="buscaCidade($event)">\n            <ion-option *ngFor="let e of dataEstado" value="{{e.ID}}">{{e.Nome}}</ion-option>\n          </ion-select>\n      </ion-item>\n\n      <ion-item>\n          <ion-label floating>Cidade</ion-label>\n          <ion-select [(ngModel)]="data.cidade" disabled="{{isDisabled2}}">\n            <ion-option *ngFor="let e of dataCidade" value="{{e.ID}}">{{e.Nome}}</ion-option>\n          </ion-select>\n      </ion-item>\n      \n      <p class="aceiteEnc">Você quer fazer parte do serviço ENCONTRE UM PROFISSIONAL e autoriza a divulgação de seus dados (nome, profissão, telefone, e-mail e endereço) na seção?</p>\n      <ion-list radio-group [(ngModel)]="data.aceite">\n        <ion-item>\n            <ion-label>Não</ion-label>\n            <ion-radio value="false" selected="true"></ion-radio>\n        </ion-item>\n        <ion-item>\n            <ion-label>Sim</ion-label>\n            <ion-radio value="true"></ion-radio>\n        </ion-item>\n      </ion-list>\n\n      \n    \n    	<br>\n    	<button ion-button color="dark" block (click)="efetuaCadastro()">Cadastrar</button>\n  </ion-list>\n  <br><br><br>\n\n</ion-content>'/*ion-inline-end:"C:\Users\bruno\mobile\ionic\AmigoConstrutor\src\pages\cadastrocompleto\cadastrocompleto.html"*/,
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_blog_blog__["a" /* BlogProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_blog_blog__["a" /* BlogProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]) === "function" && _e || Object])
     ], CadastrocompletoPage);

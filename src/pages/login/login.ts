@@ -31,6 +31,15 @@ export class LoginPage {
       this.data.username = '';
       this.data.password = '';
       this.data.response = '';
+
+      // Verifica se houve cadastro de usuário
+      if(navParams.get("cadastro")){
+        this.toastCtrl.create({
+          message: `Cadastro realizado com sucesso. Para acessar sua conta, utilize os campos acima.`,
+          duration: 5000,
+          //dismissOnPageChange: true,
+        }).present();
+      }
   	}
 
   	ionViewDidLoad() {

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
 import { BlogProvider } from '../../providers/blog/blog';
 
+import { LoginPage } from '../login/login';
+
 @IonicPage()
 @Component({
   selector: 'page-cadastrocompleto',
@@ -10,6 +12,7 @@ import { BlogProvider } from '../../providers/blog/blog';
 export class CadastrocompletoPage {
 
     public isDisabled1: any;
+    public isDisabled2: any;
 
   	data: any = {};
     dataProfissao: any = [];
@@ -24,16 +27,17 @@ export class CadastrocompletoPage {
   		public loadingCtrl: LoadingController)
   	{
       this.isDisabled1 = true;
+      this.isDisabled2 = true;
 
-      //this.data.nome = navParams.get("nome");
-      //this.data.email = navParams.get("email");
-      //this.data.cpf = navParams.get("cpf");
-      //this.data.senha = navParams.get("senha");
+      this.data.nome = navParams.get("nome");
+      this.data.email = navParams.get("email");
+      this.data.cpf = navParams.get("cpf");
+      this.data.senha = navParams.get("senha");
 
-      this.data.nome = 'Bruno Teste';
-      this.data.email = 'brun1@teste.com';
-      this.data.cpf = '275.080.750-64';
-      this.data.senha = '111';
+      //this.data.nome = 'Bruno Teste';
+      //this.data.email = 'brun24@teste.com';
+      //this.data.cpf = '896.605.520-68';
+      //this.data.senha = '111';
   	}
 
   	ionViewDidLoad() {
@@ -75,7 +79,7 @@ export class CadastrocompletoPage {
       if(this.data.estado)
       {
         this.listaCidadesPorEstado();
-        this.isDisabled1 = false;
+        this.isDisabled2 = false;
       }
     }
 
@@ -113,24 +117,21 @@ export class CadastrocompletoPage {
 
   	efetuaCadastro()
   	{
-      console.log(`nome: ${this.data.nome}`);
-      console.log(`email: ${this.data.email}`);
-      console.log(`cpf: ${this.data.cpf}`);
-      console.log(`senha: ${this.data.senha}`);
-      console.log(`perfil: ${this.data.perfil}`);
-      console.log(`profissao: ${this.data.profissao}`);
-      console.log(`rg: ${this.data.rg}`);
-      console.log(`sexo: ${this.data.sexo}`);
-      console.log(`nascimento: ${this.data.nascimento}`);
-      console.log(`celular: ${this.data.celular}`);
-      console.log(`telefone: ${this.data.telefone}`);
-      console.log(`endereco: ${this.data.endereco}`);
-      console.log(`numero: ${this.data.numero}`);
-      console.log(`bairro: ${this.data.bairro}`);
-      console.log(`complemento: ${this.data.complemento}`);
-      console.log(`cep: ${this.data.cep}`);
-      console.log(`estado: ${this.data.estado}`);
-      console.log(`cidade: ${this.data.cidade}`);
+      if(!this.data.perfil || !this.data.profissao || !this.data.rg || !this.data.sexo || !this.data.nascimento || !this.data.celular || !this.data.telefone || !this.data.endereco || !this.data.numero || !this.data.bairro || !this.data.complemento || !this.data.cep || !this.data.estado || !this.data.cidade || !this.data.aceite)
+      {
+        this.toastCtrl.create({
+            message: `Preencha todos os campos corretamente.`,
+            duration: 5000,
+            dismissOnPageChange: true,
+        }).present();
+      }
+      else
+      {
+        this.finalizaCadastro();
+      }
+
+
+      //this.data.username = this.data.username.replace('.', '').replace('.', '').replace('-', '');
 
 
         /*
@@ -170,10 +171,7 @@ export class CadastrocompletoPage {
           		dismissOnPageChange: true,
         	}).present();
       	}
-      	else
-      	{
-      		this.finalizaCadastro();
-        }
+      	
         */
   	}
 
@@ -185,34 +183,30 @@ export class CadastrocompletoPage {
 
       	loading.present();
 
-        console.log(`nome: ${this.data.nome}`);
-        console.log(`email: ${this.data.email}`);
-        console.log(`cpf: ${this.data.cpf}`);
-        console.log(`senha: ${this.data.senha}`);
+        // Formata os campos
+        this.data.cpf = this.data.cpf.replace('.', '').replace('.', '').replace('-', '');
+        this.data.celular = this.data.celular.replace('(', '').replace(')', '').replace(' ', '').replace('-', '');
+        this.data.telefone = this.data.telefone.replace('(', '').replace(')', '').replace(' ', '').replace('-', '');
 
-        return false;
+        this.blogProvider.cadastroApp(this.data.nome, this.data.email, this.data.cpf, this.data.senha, this.data.perfil, this.data.profissao, this.data.rg, this.data.sexo, this.data.nascimento, this.data.celular, this.data.telefone, this.data.endereco, this.data.numero, this.data.bairro, this.data.complemento, this.data.cep, this.data.estado, this.data.cidade, this.data.aceite).subscribe(res => {
+        	loading.dismiss();
 
-    	  this.blogProvider.validaPreCadastro(this.data.email, this.data.cpf).subscribe(res => {
-        	loading.dismiss();        
-
-        	// Verifica se os campos já existem
-        	/*if(res.Existencia)
-        	{
-          	this.toastCtrl.create({
-		      		message: `Email e/ou cpf já cadastrados. Verifique suas informações e tente novamente.`,
-		      		duration: 5000,
-		      		dismissOnPageChange: true,
-		    	  }).present();
-        	}
-        	else
-        	{
-        		this.navCtrl.push(CadastrocompletoPage, {
-			        nome: this.data.nome,
-			        email: this.data.email,
-			        cpf: this.data.cpf,
-			        senha: this.data.senha,
-			      });
-        	}*/
+          // Verifica se os campos já existem
+          if(res.Usuario)
+          {
+            this.navCtrl.push(LoginPage, {
+              cadastro: true,
+            });
+          }
+          else
+          {
+            this.toastCtrl.create({
+              //message: `Erro ao cadastrar. Verifique suas informações e tente novamente.`,
+              message: res.CamposInvalidos.replace(';', ''),
+              duration: 5000,
+              dismissOnPageChange: true,
+            }).present();
+          }
       	});
   	}
 }

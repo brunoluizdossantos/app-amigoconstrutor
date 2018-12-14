@@ -13,7 +13,8 @@
   	<ion-list class="list-form">
   		<ion-item>
       		<ion-label floating>Perfil</ion-label>
-      		<ion-input type="text" name="perfil" [(ngModel)]="data.perfil" disabled="disabled" value="Profissional de Obra"></ion-input>
+          <ion-input type="hidden" name="perfil" [(ngModel)]="data.perfil" value="7"></ion-input>
+      		<ion-input type="text" value="Profissional de Obra" disabled="{{isDisabled1}}"></ion-input>
     	</ion-item>
 
     	<!--
@@ -25,7 +26,7 @@
     	</ion-item>
       -->
 
-      <ion-item id="profissao">
+      <ion-item>
         <ion-label>Profissões</ion-label>
       </ion-item>
 
@@ -96,13 +97,28 @@
 
       <ion-item>
           <ion-label floating>Cidade</ion-label>
-          <ion-select [(ngModel)]="data.cidade" disabled="{{isDisabled1}}">
+          <ion-select [(ngModel)]="data.cidade" disabled="{{isDisabled2}}">
             <ion-option *ngFor="let e of dataCidade" value="{{e.ID}}">{{e.Nome}}</ion-option>
           </ion-select>
       </ion-item>
+      
+      <p class="aceiteEnc">Você quer fazer parte do serviço ENCONTRE UM PROFISSIONAL e autoriza a divulgação de seus dados (nome, profissão, telefone, e-mail e endereço) na seção?</p>
+      <ion-list radio-group [(ngModel)]="data.aceite">
+        <ion-item>
+            <ion-label>Não</ion-label>
+            <ion-radio value="false" selected="true"></ion-radio>
+        </ion-item>
+        <ion-item>
+            <ion-label>Sim</ion-label>
+            <ion-radio value="true"></ion-radio>
+        </ion-item>
+      </ion-list>
+
+      
     
     	<br>
     	<button ion-button color="dark" block (click)="efetuaCadastro()">Cadastrar</button>
   </ion-list>
+  <br><br><br>
 
 </ion-content>

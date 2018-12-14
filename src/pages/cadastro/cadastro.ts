@@ -105,7 +105,7 @@ export class CadastroPage {
 			        email: this.data.email,
 			        cpf: this.data.cpf,
 			        senha: this.data.senha,
-			    });
+			      });
         	}
       	});
   	}
