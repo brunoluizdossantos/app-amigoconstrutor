@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { BlogProvider } from '../../providers/blog/blog';
 
 import { HomePage } from '../home/home';
+import { DetalhePage } from '../detalhe/detalhe';
+import { ProfissionalPage } from '../profissional/profissional';
 
 @IonicPage()
 @Component({
@@ -15,6 +18,7 @@ export class HomelogadoPage {
   	constructor(
       public navCtrl: NavController,
       public navParams: NavParams,
+      private blogProvider: BlogProvider,
       public storage: Storage) {
 
       this.storage.get('usuario').then((name) => {
@@ -35,11 +39,23 @@ export class HomelogadoPage {
 
         // Ajusta o menu
         document.getElementById("restrita").style.display = "none";
+        document.getElementById("meus-dados").style.display = "none";
+        document.getElementById("cad-profi").style.display = "none";
         document.getElementById("cadastro").style.display = "block";
         document.getElementById("login").style.display = "block";
       });
 
       this.navCtrl.push(HomePage);
+    }
+
+    detalhePost(id:number){
+      this.navCtrl.push(DetalhePage, {
+        id: id
+      });
+    }
+
+    encontreProfissional(){
+      this.navCtrl.push(ProfissionalPage);
     }
 
 }

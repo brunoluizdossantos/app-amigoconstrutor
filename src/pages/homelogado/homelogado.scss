@@ -1,11 +1,21 @@
 page-homelogado {
+	.fixed-content {
+		background: #f4f4f7;
+	}
 	.bar-button-menutoggle-md {
 		display: block !important;
 	}
 	.nome {
 		float: left;
+		padding-left: 10px;
 	}
 	.sair {
 		float: right;
+		padding-right: 10px;
+	}
+	.space {
+		clear: both;
+		width: 100%;
+		height: 10px;
 	}
 }

@@ -80,6 +80,8 @@ export class LoginPage {
 
             // Ajusta o menu
             document.getElementById("restrita").style.display = "block";
+            document.getElementById("meus-dados").style.display = "block";
+            document.getElementById("cad-profi").style.display = "block";
             document.getElementById("login").style.display = "none";
 
             this.navCtrl.push(HomelogadoPage);

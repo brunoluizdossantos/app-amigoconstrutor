@@ -25827,6 +25827,26 @@ page-detalhemapa #map_canvas {
   height: 100%;
 }
 
+page-edicaocadastro .item-md {
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+page-edicaocadastro #profissao ion-label {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #999;
+}
+
+page-edicaocadastro .checkbox-md {
+  margin: 9px 10px 9px 0px !important;
+}
+
+page-edicaocadastro .aceiteEnc {
+  margin: 0;
+  margin: 30px 14px 10px;
+}
+
 page-home .fixed-content {
   background: #f4f4f7;
 }
@@ -25863,16 +25883,28 @@ page-home .bar-button-menutoggle-md {
   display: block !important;
 }
 
+page-homelogado .fixed-content {
+  background: #f4f4f7;
+}
+
 page-homelogado .bar-button-menutoggle-md {
   display: block !important;
 }
 
 page-homelogado .nome {
   float: left;
+  padding-left: 10px;
 }
 
 page-homelogado .sair {
   float: right;
+  padding-right: 10px;
+}
+
+page-homelogado .space {
+  clear: both;
+  width: 100%;
+  height: 10px;
 }
 
 page-institucional .fixed-content {

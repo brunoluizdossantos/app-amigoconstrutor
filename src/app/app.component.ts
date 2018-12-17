@@ -10,6 +10,7 @@ import { CadastrocompletoPage } from '../pages/cadastrocompleto/cadastrocompleto
 import { ComosefazPage } from '../pages/comosefaz/comosefaz';
 import { DetalhePage } from '../pages/detalhe/detalhe';
 import { DetalhemapaPage } from '../pages/detalhemapa/detalhemapa';
+import { EdicaocadastroPage } from '../pages/edicaocadastro/edicaocadastro';
 import { HomePage } from '../pages/home/home';
 import { HomelogadoPage } from '../pages/homelogado/homelogado';
 import { InstitucionalPage } from '../pages/institucional/institucional';
@@ -41,12 +42,14 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { class: 'restrita',     title: 'Área Restrita', component: HomelogadoPage },
+        { class: 'meus-dados',   title: '• Meus Dados', component: EdicaocadastroPage },
+        { class: 'cad-profi',    title: '• Cadastre-se como um Profissional', component: CadastroPage },
       { class: 'home',         title: 'Home', component: HomePage },
-      { class: 'ensina',       title: '• Amigo Construtor Ensina', component: AmigoconstrutorensinaPage },
-      { class: 'como-faz',     title: '• Como se faz', component: ComosefazPage },
-      { class: 'mercado',      title: '• Mercado', component: MercadoPage },
-      { class: 'rede-amigo',   title: '• Rede do Amigo', component: RededoamigoPage },
-      { class: 'video',        title: '• Vídeos', component: VideosPage },
+        { class: 'ensina',       title: '• Amigo Construtor Ensina', component: AmigoconstrutorensinaPage },
+        { class: 'como-faz',     title: '• Como se faz', component: ComosefazPage },
+        { class: 'mercado',      title: '• Mercado', component: MercadoPage },
+        { class: 'rede-amigo',   title: '• Rede do Amigo', component: RededoamigoPage },
+        { class: 'video',        title: '• Vídeos', component: VideosPage },
       { class: 'quem-somos',   title: 'Institucional', component: InstitucionalPage },
       { class: 'produto',      title: 'Produtos', component: InstitucionalPage },
       { class: 'encontre',     title: 'Encontre um Profissional', component: ProfissionalPage },
@@ -64,6 +67,8 @@ export class MyApp {
 
         // Ajusta o menu
         document.getElementById("restrita").style.display = "block";
+        document.getElementById("meus-dados").style.display = "block";
+        document.getElementById("cad-profi").style.display = "block";
         document.getElementById("cadastro").style.display = "none";
         document.getElementById("login").style.display = "none";
 
@@ -74,6 +79,8 @@ export class MyApp {
 
         // Ajusta o menu
         document.getElementById("restrita").style.display = "none";
+        document.getElementById("meus-dados").style.display = "none";
+        document.getElementById("cad-profi").style.display = "none";
         document.getElementById("cadastro").style.display = "block";
         document.getElementById("login").style.display = "block";
 

@@ -10,6 +10,7 @@ import { CadastrocompletoPage } from '../pages/cadastrocompleto/cadastrocompleto
 import { ComosefazPage } from '../pages/comosefaz/comosefaz';
 import { DetalhePage } from '../pages/detalhe/detalhe';
 import { DetalhemapaPage } from '../pages/detalhemapa/detalhemapa';
+import { EdicaocadastroPage } from '../pages/edicaocadastro/edicaocadastro';
 import { HomePage } from '../pages/home/home';
 import { HomelogadoPage } from '../pages/homelogado/homelogado';
 import { InstitucionalPage } from '../pages/institucional/institucional';
@@ -41,6 +42,7 @@ import { IonicStorageModule } from '@ionic/storage';
     ComosefazPage,
     DetalhePage,
     DetalhemapaPage,
+    EdicaocadastroPage,
     HomePage,
     HomelogadoPage,
     InstitucionalPage,
@@ -70,6 +72,7 @@ import { IonicStorageModule } from '@ionic/storage';
     ComosefazPage,
     DetalhePage,
     DetalhemapaPage,
+    EdicaocadastroPage,
     HomePage,
     HomelogadoPage,
     InstitucionalPage,

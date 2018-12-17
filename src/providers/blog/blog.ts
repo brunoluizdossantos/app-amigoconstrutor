@@ -173,6 +173,17 @@ export class BlogProvider {
       });
     }
 
+    edicaoApp(nome, email, cpf, senha, perfil, profissao, rg, sexo, nascimento, celular, telefone, endereco, numero, bairro, complemento, cep, estado, cidade, aceite)
+    {
+      console.log('45435345');
+      return false;
+
+      //return this.http.get(`${this.apiPortal}CadastrarUsuario2?Nome=${nome}&Email=${email}&CPF=${cpf}&Senha=${senha}&CodigoPerfil=${perfil}&CodigosProfissao=${profissao}&RG=${rg}&CodigoSexo=${sexo}&DataNascimento=${nascimento}&CelularFormatado=${celular}&TelefoneComercialFormatado=${telefone}&Endereco=${endereco}&Numero=${numero}&Bairro=${bairro}&Complemento=${complemento}&CEP=${cep}&CodigoEstado=${estado}&CodigoCidade=${cidade}&ParticipaEncontreProfissional=${aceite}`)
+      //.map((data) => {
+        //return data.json();
+      //});
+    }
+
     cadastroFacebook(latitude, longitude, raio)
     {
       return this.http.get(`${this.apiPortal}ObterTodasRevendas2?latitude=${latitude}&longitude=${longitude}&raio=${raio}`)

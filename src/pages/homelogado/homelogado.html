@@ -10,4 +10,30 @@
 <ion-content padding>
     <p class="nome">Olá, <b>{{sessao.nomeUsuario}}</b></p>
     <p class="sair" (click)="efetuarLogout()">SAIR</p>
+
+    <div class="space"></div>
+
+    <ion-card (click)="detalhePost(309)">
+        <img src="assets/imgs/destaque-cimento.jpg" />
+        <ion-card-content>
+        	<ion-card-title>Como é produzido o cimento?</ion-card-title>
+        	<p>Assista ao vídeo e descubra.</p>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card (click)="encontreProfissional()">
+        <img src="assets/imgs/destaque-profissional.jpg" />
+        <ion-card-content>
+        	<ion-card-title>Encontre um profissional</ion-card-title>
+        	<p>Facilitamos sua busca: encontre aqui um especialista próximo de você.</p>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card (click)="detalhePost(318)">
+        <img src="assets/imgs/destaque-alvenaria.jpg" />
+        <ion-card-content>
+        	<ion-card-title>Alvenaria</ion-card-title>
+        	<p>Assista ao vídeo e confira como deixar sua alvenaria perfeita.</p>
+        </ion-card-content>
+    </ion-card>
 </ion-content>
